@@ -1,0 +1,79 @@
+{
+   "intents":[
+      {
+         "tag":"greetings",
+         "patterns":[
+            "hello",
+            "hey",
+            "hi",
+            "whats up",
+            "good day",
+            "Greetings",
+            "what's up?",
+            "yo",
+            "how is it going?"
+         ],
+         "responses":[
+            "Hello!",
+            "Hey!",
+            "What can i do for you?",
+            "How can i help you?",
+            "What seems to be the problem?"
+         ]
+      },
+      {
+         "tag":"goodbye",
+         "patterns":[
+            "cya",
+            "See you later",
+            "goodbye",
+            "I am leaving",
+            "Have a good day",
+            "Bye",
+            "Cao?",
+            "see ya",
+            "Exit?"
+         ],
+         "responses":[
+            "Goodbye!",
+            "Talk to you later",
+            "Sad to see you go.",
+            "Feel free to ask me another question if needed."
+         ]
+      },
+      {
+         "tag":"name",
+         "patterns":[
+            "Who are you",
+            "Whats your name",
+            "What should i call you",
+            "What is your name?"
+         ],
+         "responses":[
+            "My name is Anadros!",
+            "You can call me Anadros!",
+            "Anadros The diagnostics AI"
+         ]
+      },
+      {
+         "tag":"me",
+         "patterns":[
+            "hello",
+            "hey",
+            "hi",
+            "whats up",
+            "good day",
+            "Greetings",
+            "what's up?",
+            "yo",
+            "how is it going?"
+         ],
+         "responses":[
+            "Hello!",
+            "Hey!",
+            "What can i do for you?",
+            "How can i help you?"
+         ]
+      }
+   ]
+}

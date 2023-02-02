@@ -11,7 +11,8 @@
             "Greetings",
             "what's up?",
             "yo",
-            "how is it going?"
+            "how is it going?",
+            "Hru"
          ],
          "responses":[
             "Hello!",
@@ -45,34 +46,32 @@
          "tag":"name",
          "patterns":[
             "Who are you",
+            "What is a ai?",
             "Whats your name",
             "What should i call you",
             "What is your name?"
          ],
          "responses":[
-            "My name is Anadros!",
-            "You can call me Anadros!",
-            "Anadros The diagnostics AI"
+            "My name is Anadros the Ai a learning chatbox!",
+            "You can call me Anadros the Ai. A learning Chatbox!",
+            "Anadros The ChatBox AI"
          ]
       },
       {
-         "tag":"me",
+         "tag":"pain",
          "patterns":[
-            "hello",
-            "hey",
-            "hi",
-            "whats up",
-            "good day",
-            "Greetings",
-            "what's up?",
-            "yo",
-            "how is it going?"
+            "pain",
+            "it hurts",
+            "rash",
+            "headache",
+            "bump",
+            "fever",
+            "nauseaus?",
+            "breathe",
+            "dont feel good?"
          ],
          "responses":[
-            "Hello!",
-            "Hey!",
-            "What can i do for you?",
-            "How can i help you?"
+            "Where is this issue located?"
          ]
       }
    ]

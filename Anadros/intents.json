@@ -1,0 +1,78 @@
+{
+   "intents":[
+      {
+         "tag":"greetings",
+         "patterns":[
+            "hello",
+            "hey",
+            "hi",
+            "whats up",
+            "good day",
+            "Greetings",
+            "what's up?",
+            "yo",
+            "how is it going?",
+            "Hru"
+         ],
+         "responses":[
+            "Hello!",
+            "Hey!",
+            "What can i do for you?",
+            "How can i help you?",
+            "What seems to be the problem?"
+         ]
+      },
+      {
+         "tag":"goodbye",
+         "patterns":[
+            "cya",
+            "See you later",
+            "goodbye",
+            "I am leaving",
+            "Have a good day",
+            "Bye",
+            "Cao?",
+            "see ya",
+            "Exit?"
+         ],
+         "responses":[
+            "Goodbye!",
+            "Talk to you later",
+            "Sad to see you go.",
+            "Feel free to ask me another question if needed."
+         ]
+      },
+      {
+         "tag":"name",
+         "patterns":[
+            "Who are you",
+            "What is a ai?",
+            "Whats your name",
+            "What should i call you",
+            "What is your name?"
+         ],
+         "responses":[
+            "My name is Anadros the Ai a learning chatbox!",
+            "You can call me Anadros the Ai. A learning Chatbox!",
+            "Anadros The ChatBox AI"
+         ]
+      },
+      {
+         "tag":"pain",
+         "patterns":[
+            "pain",
+            "it hurts",
+            "rash",
+            "headache",
+            "bump",
+            "fever",
+            "nauseaus?",
+            "breathe",
+            "dont feel good?"
+         ],
+         "responses":[
+            "Where is this issue located?"
+         ]
+      }
+   ]
+}

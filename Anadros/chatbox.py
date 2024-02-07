@@ -152,7 +152,7 @@ def predict_class(sentence):
 
     return_list = []
     for r in results:
-        return_list.append({'intent': classes[r[0]], 'probability': str(r[1])})
+        return_list.append({'intent': classes[r[0]].lower(), 'probability': str(r[1])})
     return return_list
 
 
@@ -164,6 +164,8 @@ def get_response(intents_list, intents_json):
         if i['tag'] == tag:
             result = random.choice(i['responses'])
             break
+    else:
+        result = "Sorry, I didn't understand that."
     return result
 
 
@@ -201,13 +203,13 @@ def evaluate_math_expression(expression):
 cli = TerminalInterface()
 
 while True:
-    message = cli.get_user_input()
+    message = cli.get_user_input().lower()  # Convert user input to lowercase
 
     # Clean terminal before getting user input
     clean_terminal()
 
     # If the user enters the "Force_Response" command
-    if message == "Force_Response":
+    if message == "force_response":
         print("Creating a new intent tag and patterns...")
         new_intent_tag = cli.get_user_input("Enter the new intent tag: ")
         patterns = []
@@ -239,7 +241,7 @@ while True:
         res = get_response(ints, intents)
 
         # Check if the predicted intent is not found in the list of defined intents
-        if not any(intent['tag'] == ints[0]['intent'] for intent in intents['intents']):
+        if not any(intent['tag'].lower() == ints[0]['intent'].lower() for intent in intents['intents']):
             cli.bot_response("Sorry, I didn't understand that.")
             user_correction = cli.get_user_input("Could you please provide the correct response for this input? ")
             save_response(ints[0]['intent'], message, user_correction)

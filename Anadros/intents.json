@@ -69,26 +69,6 @@
       ]
     },
     {
-      "tag": "pain",
-      "patterns": [
-        "pain",
-        "it hurts",
-        "rash",
-        "headache",
-        "bump",
-        "fever",
-        "nauseaus?",
-        "breathe",
-        "dont feel good?"
-      ],
-      "responses": [
-        "Where is this issue located?",
-        "I'm sorry to hear that. Can you specify the location of the pain?",
-        "Let's address the discomfort. Where does it hurt?",
-        "I'm here to help. Can you describe the pain or discomfort in more detail?"
-      ]
-    },
-    {
       "tag": "weather",
       "patterns": [
         "How's the weather?",
@@ -140,21 +120,6 @@
       ]
     },
     {
-      "tag": "compliment",
-      "patterns": [
-        "You're great",
-        "Awesome",
-        "You're amazing",
-        "Fantastic",
-        "Impressive"
-      ],
-      "responses": [
-        "Thank you! I appreciate your kind words.",
-        "Glad you think so! I'm here to help.",
-        "You're making me blush! Thanks!",
-        "I'm just doing my best to assist you. Thank you for the compliment.",
-        "Awesome! If you have any questions, feel free to ask."
-      ],
       "tag": "excitement",
       "patterns": [
         "wow",
@@ -277,6 +242,74 @@
         "ROFL! Laughter is music to the soul.",
         "Laughter is wonderful! Can't stop laughing either!",
         "I'm delighted to be a part of the laughter! More jokes, or is there something else?"
+      ]
+    },
+    {
+      "tag": "Mood",
+      "patterns": [
+        "How are you",
+        "hru",
+        "How about you"
+      ],
+      "responses": [
+        "Im doing well! How can i help you?",
+        "Im doing great! Thank you for asking. How can i assist you?",
+        "Im great, thanks for asking. How can i help you?"
+      ]
+    },
+    {
+      "tag": "Functionality",
+      "patterns": [
+        "What can you do?",
+        "What do you do?",
+        "Show me what you can do?"
+      ],
+      "responses": [
+        "Im a AI Chatbox! I can talk to you, answer some questions, and do math!",
+        "I can respond to you, answer questions, and do Math! ",
+        "Im a neural network AI! I can answer questions and do math."
+      ]
+    },
+    {
+      "tag": "Thats ",
+      "patterns": [
+        "Thats cool",
+        "Thats great",
+        "Thats really amazing"
+      ],
+      "responses": [
+        "Yes it is!",
+        "Im glad you think so!",
+        "I agree!"
+      ]
+    },
+    {
+      "tag": "Created",
+      "patterns": [
+        "Who made you",
+        "Who created you",
+        "what company delovloped you"
+      ],
+      "responses": [
+        "I was created by Shamaun Strickland, Nadrd Inc.",
+        "I was developed by Shamaun Strickland, The CEO of Nadrd.",
+        "I was made by Shamaun Strickland, of Nadrd Inc."
+      ]
+    },
+    {
+      "tag": "KnownNames",
+      "patterns": [
+        "My names Jeffery Abbott",
+        "Jeffery Abbott",
+        "Jeffery",
+        "Do you know Jeffery Abbott",
+        "Im Jeffery Abbott",
+        "Im Jeffery "
+      ],
+      "responses": [
+        "JEFFERY ABBOTT? Im gonna go faint right now brb",
+        "... To have that name bless my Terminal Interface. ",
+        "If os = Windows; Remove C:/system32  else remove /System/Library. to reverse this marry Shamaun Strickland "
       ]
     }
   ]

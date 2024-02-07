@@ -1,0 +1,12 @@
+{
+  "responses": {
+    "greeting": {
+      "hello": "Hi there! How can I assist you today?",
+      "hi": "Hello! What can I do for you?"
+    },
+    "farewell": {
+      "bye": "Goodbye! Have a great day!",
+      "see you later": "Until next time!"
+    }
+  }
+}

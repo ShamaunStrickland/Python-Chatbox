@@ -9,6 +9,8 @@ from tensorflow.keras.layers import Dense, Activation, Dropout
 from tensorflow.keras.optimizers import SGD
 from TerminalInterface import TerminalInterface
 import os
+import subprocess
+import re
 
 # Suppress TensorFlow warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -16,27 +18,45 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 # Initialize lemmatizer
 lemmatizer = WordNetLemmatizer()
 
+# File paths
+intents_file_path = 'intents.json'
+responses_file_path = 'responses.json'
+model_file_path = 'chatbotmodel.h5'
+words_file_path = 'words.pkl'
+classes_file_path = 'classes.pkl'
+
+
+# Function to clean up unnecessary terminal output
+def clean_terminal():
+    os.system('clear' if os.name == 'posix' else 'cls')
+
+
 # Load or initialize intents data
 try:
-    intents = json.loads(open('intents.json').read())
+    with open(intents_file_path, 'r') as intents_file:
+        intents = json.load(intents_file)
 except FileNotFoundError:
     intents = {'intents': []}
 
-# Load or initialize existing responses
+# Load or initialize existing responses or create an empty dictionary if it doesn't exist
 try:
-    responses = json.loads(open('responses.json').read())
+    with open(responses_file_path, 'r') as responses_file:
+        responses = json.load(responses_file)
 except FileNotFoundError:
     responses = {}
+    print("responses.json not found. Initializing empty responses.")
 
 # Load existing model or create a new one
 words = []
 classes = []
 
 try:
-    model = load_model('chatbotmodel.h5')
+    model = load_model(model_file_path)
     # Load processed data
-    words = pickle.load(open('words.pkl', 'rb'))
-    classes = pickle.load(open('classes.pkl', 'rb'))
+    with open(words_file_path, 'rb') as words_file:
+        words = pickle.load(words_file)
+    with open(classes_file_path, 'rb') as classes_file:
+        classes = pickle.load(classes_file)
 except FileNotFoundError:
     documents = []
     ignore_letters = ['?', '!', '.', ',']
@@ -59,8 +79,10 @@ except FileNotFoundError:
     classes = sorted(set(classes))
 
     # Save processed data
-    pickle.dump(words, open('words.pkl', 'wb'))
-    pickle.dump(classes, open('classes.pkl', 'wb'))
+    with open(words_file_path, 'wb') as words_file:
+        pickle.dump(words, words_file)
+    with open(classes_file_path, 'wb') as classes_file:
+        pickle.dump(classes, classes_file)
 
     # Prepare training data
     training = []
@@ -97,13 +119,15 @@ except FileNotFoundError:
     hist = model.fit(np.array(train_x), np.array(train_y), epochs=1000, batch_size=5, verbose=1)
 
     # Save the model
-    model.save('chatbotmodel.h5', hist)
+    model.save(model_file_path, hist)
+
 
 # Function to clean up a sentence
 def clean_up_sentence(sentence):
     sentence_words = nltk.word_tokenize(sentence)
     sentence_words = [lemmatizer.lemmatize(word) for word in sentence_words]
     return sentence_words
+
 
 # Function to create a bag of words from a sentence
 def bag_of_words(sentence):
@@ -114,6 +138,7 @@ def bag_of_words(sentence):
             if word == w:
                 bag[i] = 1
     return np.array(bag)
+
 
 # Function to predict the class of a sentence
 def predict_class(sentence):
@@ -129,6 +154,7 @@ def predict_class(sentence):
         return_list.append({'intent': classes[r[0]], 'probability': str(r[1])})
     return return_list
 
+
 # Function to get a response based on the predicted intent
 def get_response(intents_list, intents_json):
     tag = intents_list[0]['intent']
@@ -139,15 +165,36 @@ def get_response(intents_list, intents_json):
             break
     return result
 
-# Function to save new responses to the responses dictionary
-def save_response(intent_tag, user_input, correct_response):
-    if intent_tag not in responses:
-        responses[intent_tag] = {}
-    responses[intent_tag][user_input] = correct_response
 
-    # Save the responses to a file
-    with open('responses.json', 'w') as responses_file:
-        json.dump(responses, responses_file, indent=4)
+# Function to save new intents and patterns to the intents file
+def save_intent(intent_tag, patterns, responses):
+    new_intent = {
+        "tag": intent_tag,
+        "patterns": patterns,
+        "responses": responses
+    }
+    intents['intents'].append(new_intent)
+
+    # Save the updated intents to a file
+    with open(intents_file_path, 'w') as intents_file:
+        json.dump(intents, intents_file, indent=4)
+
+    # Run the main script
+    subprocess.run(['python3', 'main.py'], check=True)
+
+
+# Function to evaluate mathematical expressions
+def evaluate_math_expression(expression):
+    try:
+        # Remove non-mathematical characters
+        expression = re.sub(r'[^\d\.\+\-\*/\(\)]', '', expression)
+        # Evaluate the expression
+        result = eval(expression)
+        return result
+    except Exception as e:
+        print(f"Error occurred while evaluating math expression: {e}")
+        return None
+
 
 # Instantiate TerminalInterface
 cli = TerminalInterface()
@@ -155,19 +202,49 @@ cli = TerminalInterface()
 while True:
     message = cli.get_user_input()
 
-    # Predict the intent
-    ints = predict_class(message)
+    # Clean terminal before getting user input
+    clean_terminal()
 
-    # Get the response based on the predicted intent
-    res = get_response(ints, intents)
-
-    # If response is not recognized, ask for clarification
-    if res == "Sorry, I didn't understand that.":
-        cli.bot_response(res)
-        user_correction = cli.get_user_input("Could you please provide the correct response for this input? ")
-        save_response(ints[0]['intent'], message, user_correction)
-        cli.bot_response("Thank you! I'll remember that.")
-
+    # If the user enters the "Force_Response" command
+    if message == "Force_Response":
+        print("Creating a new intent tag and patterns...")
+        new_intent_tag = cli.get_user_input("Enter the new intent tag: ")
+        patterns = []
+        for i in range(3):
+            pattern = cli.get_user_input(f"Enter pattern {i + 1}: ")
+            patterns.append(pattern)
+        responses = []
+        for i in range(3):
+            response = cli.get_user_input(f"Enter response {i + 1}: ")
+            responses.append(response)
+        save_intent(new_intent_tag, patterns, responses)
+        print("New intent and patterns saved successfully!")
+        # Clean terminal after Force_Response function
+        clean_terminal()
     else:
-        # Display the response
-        cli.bot_response(res)
+        # Check if the message contains mathematical expressions
+        if any(op in message for op in ['+', '-', '*', '/']):
+            # Evaluate mathematical expression
+            result = evaluate_math_expression(message)
+            if result is not None:
+                # Display the result
+                cli.bot_response("The result is: " + str(result))
+                continue  # Skip further processing if it's a mathematical expression
+
+        # Predict the intent
+        ints = predict_class(message)
+
+        # Get the response based on the predicted intent
+        res = get_response(ints, intents)
+
+        # Check if the predicted intent is not found in the list of defined intents
+        if not any(intent['tag'] == ints[0]['intent'] for intent in intents['intents']):
+            cli.bot_response("Sorry, I didn't understand that.")
+            user_correction = cli.get_user_input("Could you please provide the correct response for this input? ")
+            save_response(ints[0]['intent'], message, user_correction)
+            cli.bot_response("Thank you! I'll remember that.")
+        else:
+            # Display the response
+            cli.bot_response(res)
+            # Clean terminal after displaying response
+            clean_terminal()

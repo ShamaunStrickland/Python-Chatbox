@@ -6,7 +6,7 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Activation, Dropout
-from tensorflow.keras.optimizers import SGD
+from tensorflow.keras.optimizers.legacy import SGD as legacy_SGD
 
 # Initialize lemmatizer
 lemmatizer = WordNetLemmatizer()
@@ -72,13 +72,13 @@ model.add(Dense(64, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(len(train_y[0]), activation='softmax'))
 
-sgd = SGD(learning_rate=0.01, momentum=0.9, nesterov=True)
-model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
+legacy_optimizer = legacy_SGD(learning_rate=0.01, momentum=0.9, nesterov=True)
+model.compile(loss='categorical_crossentropy', optimizer=legacy_optimizer, metrics=['accuracy'])
 
 # Train the model
 hist = model.fit(np.array(train_x), np.array(train_y), epochs=100, batch_size=5, verbose=1)
 
-# Save the model
-model.save('chatbotmodel.h5', hist)
+# Save the model in native Keras format
+model.save('chatbotmodel.keras', hist)
 
 print("Done")

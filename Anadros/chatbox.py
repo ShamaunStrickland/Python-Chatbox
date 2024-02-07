@@ -6,7 +6,7 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import Dense, Activation, Dropout
-from tensorflow.keras.optimizers import SGD
+from tensorflow.keras.optimizers.legacy import SGD as legacy_SGD
 from TerminalInterface import TerminalInterface
 import os
 import subprocess
@@ -21,7 +21,7 @@ lemmatizer = WordNetLemmatizer()
 # File paths
 intents_file_path = 'intents.json'
 responses_file_path = 'responses.json'
-model_file_path = 'chatbotmodel.h5'
+model_file_path = 'chatbotmodel.keras'
 words_file_path = 'words.pkl'
 classes_file_path = 'classes.pkl'
 
@@ -112,8 +112,9 @@ except FileNotFoundError:
     model.add(Dropout(0.5))
     model.add(Dense(len(train_y[0]), activation='softmax'))
 
-    sgd = SGD(learning_rate=0.01, momentum=0.9, nesterov=True)
-    model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
+    # Use the legacy SGD optimizer
+    optimizer = legacy_SGD(learning_rate=0.01, momentum=0.9, nesterov=True)
+    model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
 
     # Train the model
     hist = model.fit(np.array(train_x), np.array(train_y), epochs=1000, batch_size=5, verbose=1)

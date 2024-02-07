@@ -8,11 +8,11 @@
         "hi",
         "whats up",
         "good day",
-        "Greetings",
+        "greetings",
         "what's up?",
         "yo",
         "how is it going?",
-        "Hru"
+        "hru"
       ],
       "responses": [
         "Hello!",
@@ -31,14 +31,14 @@
       "tag": "goodbye",
       "patterns": [
         "cya",
-        "See you later",
+        "see you later",
         "goodbye",
-        "I am leaving",
-        "Have a good day",
-        "Bye",
-        "Cao?",
+        "i am leaving",
+        "have a good day",
+        "bye",
+        "cao?",
         "see ya",
-        "Exit?"
+        "exit?"
       ],
       "responses": [
         "Goodbye!",
@@ -56,11 +56,11 @@
     {
       "tag": "name",
       "patterns": [
-        "Who are you",
-        "What is a ai?",
-        "Whats your name",
-        "What should i call you",
-        "What is your name?"
+        "who are you",
+        "what is a ai?",
+        "whats your name",
+        "what should i call you",
+        "what is your name?"
       ],
       "responses": [
         "My name is Anadros the Ai, a learning chatbox!",
@@ -71,11 +71,11 @@
     {
       "tag": "weather",
       "patterns": [
-        "How's the weather?",
-        "What's the weather like today?",
-        "Is it raining?",
-        "Weather forecast",
-        "Tell me about the weather"
+        "how's the weather?",
+        "what's the weather like today?",
+        "is it raining?",
+        "weather forecast",
+        "tell me about the weather"
       ],
       "responses": [
         "I'm not a weather expert, but you can check a reliable weather website for the current conditions.",
@@ -86,11 +86,11 @@
     {
       "tag": "thanksgiving",
       "patterns": [
-        "Thank you",
-        "Thanks",
-        "Appreciate it",
-        "Gratitude",
-        "Thankful"
+        "thank you",
+        "thanks",
+        "appreciate it",
+        "gratitude",
+        "thankful"
       ],
       "responses": [
         "You're welcome!",
@@ -107,11 +107,11 @@
     {
       "tag": "time",
       "patterns": [
-        "What's the time?",
-        "Can you tell me the time?",
-        "Time please",
-        "Current time",
-        "What time is it?"
+        "what's the time?",
+        "can you tell me the time?",
+        "time please",
+        "current time",
+        "what time is it?"
       ],
       "responses": [
         "I'm sorry, but I don't have the ability to provide real-time information, including the current time.",
@@ -149,13 +149,13 @@
       "patterns": [
         "tell me more",
         "what's next",
-        "I want to know more",
+        "i want to know more",
         "curious",
         "what happens next",
         "what's the story",
         "keep going",
         "more details",
-        "I'm intrigued"
+        "i'm intrigued"
       ],
       "responses": [
         "I can definitely share more details. What specifically would you like to know?",
@@ -223,12 +223,12 @@
       "tag": "laughter",
       "patterns": [
         "hahaha",
-        "LOL",
+        "lol",
         "that's funny",
         "hilarious",
         "cracking up",
         "funny stuff",
-        "ROFL",
+        "rofl",
         "laughter",
         "can't stop laughing"
       ],
@@ -245,11 +245,11 @@
       ]
     },
     {
-      "tag": "Mood",
+      "tag": "mood",
       "patterns": [
-        "How are you",
+        "how are you",
         "hru",
-        "How about you"
+        "how about you"
       ],
       "responses": [
         "Im doing well! How can i help you?",
@@ -258,11 +258,11 @@
       ]
     },
     {
-      "tag": "Functionality",
+      "tag": "functionality",
       "patterns": [
-        "What can you do?",
-        "What do you do?",
-        "Show me what you can do?"
+        "what can you do?",
+        "what do you do?",
+        "show me what you can do?"
       ],
       "responses": [
         "Im a AI Chatbox! I can talk to you, answer some questions, and do math!",
@@ -271,11 +271,11 @@
       ]
     },
     {
-      "tag": "Thats ",
+      "tag": "thats ",
       "patterns": [
-        "Thats cool",
-        "Thats great",
-        "Thats really amazing"
+        "thats cool",
+        "thats great",
+        "thats really amazing"
       ],
       "responses": [
         "Yes it is!",
@@ -284,10 +284,10 @@
       ]
     },
     {
-      "tag": "Created",
+      "tag": "created",
       "patterns": [
-        "Who made you",
-        "Who created you",
+        "who made you",
+        "who created you",
         "what company delovloped you"
       ],
       "responses": [
@@ -297,14 +297,14 @@
       ]
     },
     {
-      "tag": "KnownNames",
+      "tag": "knownnames",
       "patterns": [
-        "My names Jeffery Abbott",
-        "Jeffery Abbott",
-        "Jeffery",
-        "Do you know Jeffery Abbott",
-        "Im Jeffery Abbott",
-        "Im Jeffery "
+        "my names jeffery abbott",
+        "jeffery abbott",
+        "jeffery",
+        "do you know jeffery abbott",
+        "im jeffery abbott",
+        "im jeffery "
       ],
       "responses": [
         "JEFFERY ABBOTT? Im gonna go faint right now brb",

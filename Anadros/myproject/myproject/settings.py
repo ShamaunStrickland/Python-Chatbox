@@ -82,11 +82,6 @@ DATABASES = {
         'PASSWORD': 'AVNS_eF16Y6-AumI0bR1dJvV',
         'HOST': 'anadros-user-training-data-do-user-15796887-0.c.db.ondigitalocean.com',
         'PORT': '25060',
-        'OPTIONS': {
-            'ssl': {
-                'ca': '/Users/shamaunstrickland/Documents/ca-certificate.crt'  # Specify the path to your SSL certificate
-            }
-        }
     }
 }
 

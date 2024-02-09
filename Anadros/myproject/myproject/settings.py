@@ -24,7 +24,11 @@ SECRET_KEY = 'django-insecure-fmi*3u*-0)o0w+tk)ue_ld650-d*4my4tum*h7lu2=a)s#e=@&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['andros.com',
+                 'https://anadros.com',
+                 '127.0.0.1',
+                 'localhost',
+                 '161.35.142.168']
 
 # Application definition
 

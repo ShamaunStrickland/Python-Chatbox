@@ -1,5 +1,4 @@
 absl-py==2.1.0
-altgraph @ file:///System/Volumes/Data/SWE/Apps/DT/BuildRoots/BuildRoot11/ActiveBuildRoot/Library/Caches/com.apple.xbs/Sources/python3/python3-141/altgraph-0.17.2-py2.py3-none-any.whl
 annotated-types==0.6.0
 astunparse==1.6.3
 blis==0.7.4

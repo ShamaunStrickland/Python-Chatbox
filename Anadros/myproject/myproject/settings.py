@@ -26,9 +26,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['andros.com',
                  'https://anadros.com',
-                 '127.0.0.1',
-                 'localhost',
-                 '161.35.142.168']
+                 '104.236.6.147',
+                 'localhost']
 
 # Application definition
 

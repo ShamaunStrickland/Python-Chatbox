@@ -31,6 +31,9 @@ def clean_terminal():
     os.system('clear' if os.name == 'posix' else 'cls')
 
 
+# Clean terminal before starting the chatbot
+clean_terminal()
+
 # Load or initialize intents data
 try:
     with open(intents_file_path, 'r') as intents_file:
@@ -205,9 +208,6 @@ cli = TerminalInterface()
 while True:
     message = cli.get_user_input().lower()  # Convert user input to lowercase
 
-    # Clean terminal before getting user input
-    clean_terminal()
-
     # If the user enters the "Force_Response" command
     if message == "force_response":
         print("Creating a new intent tag and patterns...")
@@ -222,8 +222,6 @@ while True:
             responses.append(response)
         save_intent(new_intent_tag, patterns, responses)
         print("New intent and patterns saved successfully!")
-        # Clean terminal after Force_Response function
-        clean_terminal()
     else:
         # Check if the message contains mathematical expressions
         if any(op in message for op in ['+', '-', '*', '/']):
@@ -249,5 +247,3 @@ while True:
         else:
             # Display the response
             cli.bot_response(res)
-            # Clean terminal after displaying response
-            clean_terminal()

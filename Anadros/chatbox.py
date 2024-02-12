@@ -25,15 +25,6 @@ model_file_path = 'chatbotmodel.keras'
 words_file_path = 'words.pkl'
 classes_file_path = 'classes.pkl'
 
-
-# Function to clean up unnecessary terminal output
-def clean_terminal():
-    os.system('clear' if os.name == 'posix' else 'cls')
-
-
-# Clean terminal before starting the chatbot
-clean_terminal()
-
 # Load or initialize intents data
 try:
     with open(intents_file_path, 'r') as intents_file:

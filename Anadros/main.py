@@ -19,11 +19,24 @@ def train():
     training_script_path = os.path.join(current_dir, 'training.py')
     print("Running training script:", training_script_path)
     subprocess.run(['python3', training_script_path])
+
     # Run chatbot after training
     chatbox_script_path = os.path.join(current_dir, 'chatbox.py')
     print("Running chatbot script:", chatbox_script_path)
     subprocess.run(['python3', chatbox_script_path])
     return "Training complete and Chatbot started"
+
+    return "Training complete"
+
+
+@app.route('/chat')
+def chat():
+    # Run the chatbot
+    chatbox_script_path = os.path.join(current_dir, 'chatbox.py')
+    print("Running chatbot script:", chatbox_script_path)
+    subprocess.run(['python3', chatbox_script_path])
+    return "Chatbot started"
+>>>>>>> 3998c20 (flask)
 
 
 @app.route('/dynamic_content')

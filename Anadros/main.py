@@ -36,7 +36,6 @@ def chat():
     print("Running chatbot script:", chatbox_script_path)
     subprocess.run(['python3', chatbox_script_path])
     return "Chatbot started"
->>>>>>> 3998c20 (flask)
 
 
 @app.route('/dynamic_content')

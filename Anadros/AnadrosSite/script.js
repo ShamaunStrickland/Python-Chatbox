@@ -1,26 +1,31 @@
-// JavaScript for chatbot functionality
-
-// Function to send user message to chatbox
-function sendMessage() {
-    var userInput = document.getElementById('user-input').value;
-    document.getElementById('chat-box').innerHTML += '<div class="user-message">' + userInput + '</div>';
-    document.getElementById('user-input').value = '';
-    // Call function to handle bot response
-    getBotResponse(userInput);
-}
-
-// Function to handle bot response
-function getBotResponse(userInput) {
-    // Add loader animation while waiting for response
-    document.getElementById('loader').style.display = 'block';
-    // Simulate response delay
-    setTimeout(function () {
-        // Dummy bot response (replace with actual response)
-        var botResponse = 'This is a sample bot response to: ' + userInput;
+// Function to send user message to Flask server
+function sendMessageToServer(userInput) {
+    fetch('/chat?message=' + encodeURIComponent(userInput))
+    .then(response => response.text())
+    .then(botResponse => {
+        // Add bot response to the chat box
         document.getElementById('chat-box').innerHTML += '<div class="bot-message">' + botResponse + '</div>';
         // Hide loader animation after response
         document.getElementById('loader').style.display = 'none';
-    }, 1000); // Simulate 1 second delay (replace with actual API call)
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Hide loader animation in case of error
+        document.getElementById('loader').style.display = 'none';
+    });
+}
+
+// Function to send user message and receive bot response
+function sendMessage() {
+    var userInput = document.getElementById('user-input').value;
+    // Display user message in the chat box
+    document.getElementById('chat-box').innerHTML += '<div class="user-message">' + userInput + '</div>';
+    // Clear input field
+    document.getElementById('user-input').value = '';
+    // Show loader animation
+    document.getElementById('loader').style.display = 'block';
+    // Send user message to Flask server and get bot response
+    sendMessageToServer(userInput);
 }
 
 // Event listener for send button click

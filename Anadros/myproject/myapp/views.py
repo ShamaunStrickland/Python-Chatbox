@@ -16,13 +16,3 @@ def run_training(request):
         error_message = f"Error occurred while running training script: {e}"
         print(error_message)
         return HttpResponse(error_message)
-
-
-# urls.py
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('run_training/', views.run_training, name='run_training'),
-    # Other URL patterns
-]

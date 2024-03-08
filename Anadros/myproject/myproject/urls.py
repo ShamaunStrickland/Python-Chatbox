@@ -1,8 +1,8 @@
+# urls.py
 from django.contrib import admin
 from django.urls import path
-from . import views
+from myapp.views import run_training
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('run_training/', views.run_training, name='run_training'),
+    path('run_training/', run_training, name='run_training'),
 ]

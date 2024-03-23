@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'defaultdb',
+        'NAME': 'User-data',
         'USER': 'doadmin',
         'PASSWORD': 'AVNS_eF16Y6-AumI0bR1dJvV',
         'HOST': 'anadros-user-training-data-do-user-15796887-0.c.db.ondigitalocean.com',

@@ -7,12 +7,50 @@ from nltk.stem import WordNetLemmatizer
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Activation, Dropout
 from tensorflow.keras.optimizers.legacy import SGD as legacy_SGD
+import mysql.connector
+
+# Database configuration
+db_config = {
+    'host': 'anadros-user-training-data-do-user-15796887-0.c.db.ondigitalocean.com',
+    'user': 'doadmin',
+    'password': 'AVNS_eF16Y6-AumI0bR1dJvV',
+    'database': 'defaultdb',
+    'port': 25060
+}
+
+# Connect to the database
+conn = mysql.connector.connect(**db_config)
+cursor = conn.cursor()
+
+# Fetch data from the database
+cursor.execute("SELECT tag, patterns, responses FROM intents")
+intents_data = cursor.fetchall()
+
+# Close the database connection
+cursor.close()
+conn.close()
+
+# Prepare intents dictionary
+intents = {'intents': []}
+
+# Process fetched data and structure into intents dictionary
+for tag, patterns, responses in intents_data:
+    pattern_list = json.loads(patterns)
+    response_list = json.loads(responses)
+
+    intent = {
+        'tag': tag,
+        'patterns': pattern_list,
+        'responses': response_list
+    }
+    intents['intents'].append(intent)
+
+# Write intents data to intents.json without unnecessary characters
+with open('intents.json', 'w') as file:
+    json.dump(intents, file, indent=2, ensure_ascii=False)
 
 # Initialize lemmatizer
 lemmatizer = WordNetLemmatizer()
-
-# Load intents data
-intents = json.loads(open('intents.json').read())
 
 # Initialize lists
 words = []
@@ -39,10 +77,6 @@ classes = sorted(set(classes))
 # Save processed data
 pickle.dump(words, open('words.pkl', 'wb'))
 pickle.dump(classes, open('classes.pkl', 'wb'))
-
-# Save intents data
-with open('intents_processed.json', 'w') as file:
-    json.dump(intents, file)
 
 # Prepare training data
 training = []

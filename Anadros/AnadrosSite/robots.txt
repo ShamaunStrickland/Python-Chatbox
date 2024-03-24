@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /.env
+Disallow: /cgi-bin/

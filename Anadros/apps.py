@@ -1,5 +1,6 @@
 import subprocess
 import re
+import os
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 
@@ -29,6 +30,12 @@ def remove_ansi_escape_codes(text):
 # Route for homepage
 @app.route('/')
 def index():
+    # Print current working directory
+    print("Current working directory:", os.getcwd())
+
+    # List files in current directory
+    print("Files in current directory:", os.listdir())
+
     # Run the training script
     training_script_path = 'training.py'
     print("Running training script:", training_script_path)

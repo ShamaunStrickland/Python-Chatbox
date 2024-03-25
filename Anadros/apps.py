@@ -10,6 +10,15 @@ socketio = SocketIO(app)
 chatbox_process = None
 
 
+# Function to log IP addresses and chat messages
+def log_request():
+    ip_address = request.remote_addr
+    message = request.form.get('message')
+    with open('request_logs.txt', 'a') as log_file:
+        log_file.write(f'IP Address: {ip_address}\nMessage: {message}\n\n')
+
+
+# Function to start the chatbot process
 def start_chatbot():
     global chatbox_process
     # Run chatbox script
@@ -29,6 +38,7 @@ def remove_ansi_escape_codes(text):
 # Route for homepage
 @app.route('/')
 def index():
+    log_request()  # Log IP address and message
     # Run the training script synchronously
     training_script_path = 'training.py'
     print("Running training script:", training_script_path)
@@ -48,6 +58,7 @@ def index():
 # Event handler for receiving messages from the frontend
 @socketio.on('send_message')
 def handle_message(data):
+    log_request()  # Log IP address and message
     if chatbox_process is None:
         emit('bot_response', {'bot_response': 'Chatbot is not ready. Please wait.'})
         return

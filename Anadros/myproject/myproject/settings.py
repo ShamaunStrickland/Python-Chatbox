@@ -18,10 +18,10 @@ SECRET_KEY = 'django-insecure-fmi*3u*-0)o0w+tk)ue_ld650-d*4my4tum*h7lu2=a)s#e=@&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['andros.com',
-                 'https://anadros.com',
-                 '104.236.6.147',
-                 'localhost']
+ALLOWED_HOSTS = ['',
+                 '',
+                 '',
+                 '']
 
 # Application definition
 
@@ -73,11 +73,11 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'User-data',
-        'USER': 'doadmin',
-        'PASSWORD': 'AVNS_eF16Y6-AumI0bR1dJvV',
-        'HOST': 'anadros-user-training-data-do-user-15796887-0.c.db.ondigitalocean.com',
-        'PORT': '25060',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     }
 }
 

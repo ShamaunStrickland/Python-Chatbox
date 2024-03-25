@@ -1,0 +1,78 @@
+/* CSS styles for chatbot interface */
+
+/* Style for the body */
+body {
+    background-color: #f4f4f4; /* Soft gray background color */
+    font-family: Arial, sans-serif; /* Use Arial or a sans-serif font */
+}
+
+/* Style for the chat container */
+.chat-container {
+    max-width: 600px; /* Maximum width */
+    margin: 20px auto; /* Center the chat container */
+    padding: 20px;
+    background-color: #fff; /* White background color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Arrange children vertically */
+}
+
+/* Style for the chat box */
+.chat-box {
+    height: 300px; /* Predefined height */
+    flex-grow: 1; /* Allow the chat box to grow and occupy remaining space */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Style for user input field */
+#user-input {
+    width: calc(100% - 80px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style for send button container */
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Align items to the right */
+}
+
+/* Style for send button */
+#send-btn {
+    width: 60px;
+    margin-left: 10px; /* Add margin to separate from input field */
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Style for loader animation */
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+    display: none; /* Hidden by default */
+}
+
+/* Keyframe animation for loader spin */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

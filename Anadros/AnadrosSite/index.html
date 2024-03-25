@@ -4,22 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot</title>
+    <!-- Socket.io -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
+
+    <!-- Webmanifest Link -->
+    <link rel="manifest" href="/static/manifest.webmanifest">
     <!-- Link to CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/static/styles.css">
     <!-- Link to Favicon -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/favicon.png" type="image/png">
 </head>
 <body>
 <div class="chat-container">
     <div class="chat-box" id="chat-box">
         <!-- Messages will be displayed here -->
     </div>
-    <input type="text" id="user-input" placeholder="Type your message...">
-    <button id="send-btn">Send</button>
-    <div class="loader" id="loader"></div>
+    <!-- Send button with loader -->
+    <div class="button-container">
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button id="send-btn">Send</button>
+        <div class="loader" id="loader"></div>
+    </div>
 </div>
 
 <!-- Link to JavaScript -->
-<script src="script.js"></script>
+<script src="/static/script.js"></script>
 </body>
 </html>

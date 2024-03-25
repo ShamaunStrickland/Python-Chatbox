@@ -247,3 +247,5 @@ while True:
         else:
             # Display the response
             cli.bot_response(res)
+
+chatbox_process = None

@@ -1,7 +1,6 @@
 import subprocess
 import re
-import os
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit
 
 app = Flask(__name__, template_folder='AnadrosSite', static_folder='static')
@@ -30,26 +29,29 @@ def remove_ansi_escape_codes(text):
 # Route for homepage
 @app.route('/')
 def index():
-    # Print current working directory
-    print("Current working directory:", os.getcwd())
-
-    # List files in current directory
-    print("Files in current directory:", os.listdir())
-
-    # Run the training script
+    # Run the training script synchronously
     training_script_path = 'training.py'
     print("Running training script:", training_script_path)
-    subprocess.run(['python3', training_script_path])
+    result = subprocess.run(['python3', training_script_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-    # Start chatbot after training finishes
-    start_chatbot()
-
-    return render_template('index.html')
+    # Check if training script ran successfully
+    if result.returncode == 0:
+        # Start chatbot after training finishes
+        start_chatbot()
+        return render_template('index.html')
+    else:
+        # Training script failed, return error message to user
+        error_message = result.stderr.decode('utf-8')
+        return render_template('error.html', error_message=error_message)
 
 
 # Event handler for receiving messages from the frontend
 @socketio.on('send_message')
 def handle_message(data):
+    if chatbox_process is None:
+        emit('bot_response', {'bot_response': 'Chatbot is not ready. Please wait.'})
+        return
+
     user_input = data['message']
 
     # Send user input to chatbox script

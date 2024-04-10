@@ -11,6 +11,20 @@ from TerminalInterface import TerminalInterface
 import os
 import subprocess
 import re
+import mysql.connector
+
+# Database configuration
+db_config = {
+    'host': 'anadros-user-training-data-do-user-15796887-0.c.db.ondigitalocean.com',
+    'user': 'doadmin',
+    'password': 'AVNS_eF16Y6-AumI0bR1dJvV',
+    'database': 'defaultdb',
+    'port': 25060
+}
+
+# Connect to the database
+conn = mysql.connector.connect(**db_config)
+cursor = conn.cursor()
 
 # Suppress TensorFlow warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -205,8 +219,67 @@ def evaluate_math_expression(expression):
 # Instantiate TerminalInterface
 cli = TerminalInterface()
 
+
+# Function to check credentials in the database
+def check_credentials(username, password):
+    query = "SELECT * FROM login WHERE username = %s AND password = %s"
+    cursor.execute(query, (username, password))
+    return cursor.fetchone() is not None
+
+
+# Function to create a new user in the database
+def create_new_user(username, password):
+    query = "INSERT INTO login (username, password) VALUES (%s, %s)"
+    cursor.execute(query, (username, password))
+    conn.commit()
+
+
+# Function to initiate login
+def initiate_login():
+    attempts = 3
+    while attempts > 0:
+        print("Would you like to login? (yes/no): ")
+        login_choice = cli.get_user_input().lower()
+        if login_choice == "yes":
+            print("Enter your username and password: ")
+            username = cli.get_user_input()
+            password = cli.get_user_input()
+            if check_credentials(username, password):
+                print("Login successful!")
+                return username
+            else:
+                print("Invalid username or password.")
+                create_account = cli.get_user_input(
+                    "Would you like to create a new account? (yes/no): ").lower()
+                if create_account == "yes":
+                    new_username = cli.get_user_input("Enter a new username: ")
+                    new_password = cli.get_user_input("Enter a new password: ")
+                    create_new_user(new_username, new_password)
+                    print("Account created successfully!")
+                    return new_username
+                else:
+                    return None
+        elif login_choice == "no":
+            print("Okay, continuing as guest.")
+            return None
+        else:
+            print("Invalid choice. Please enter 'yes' or 'no'.")
+            attempts -= 1
+    print("Exceeded maximum login attempts. Exiting.")
+    return None
+
+
 while True:
     message = cli.get_user_input().lower()  # Convert user input to lowercase
+
+    # Check for login initiation
+    if "login" in message:
+        current_user = initiate_login()
+        if current_user:
+            print("Welcome, " + current_user + "!")
+        else:
+            print("Continuing as guest.")
+        continue  # Skip further processing after login attempt
 
     # If the user enters the "Force_Response" command
     if message == "force_response":
@@ -248,4 +321,5 @@ while True:
             # Display the response
             cli.bot_response(res)
 
+# Ensure the chatbox_process variable is set to None
 chatbox_process = None

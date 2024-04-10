@@ -5,7 +5,6 @@ from flask_socketio import SocketIO, emit
 
 app = Flask(__name__, template_folder='AnadrosSite', static_folder='static')
 socketio = SocketIO(app)
-
 # Function to start the chatbot process
 chatbox_process = None
 
@@ -88,4 +87,4 @@ def handle_message(data):
 
 if __name__ == '__main__':
     # Start the Flask application
-    socketio.run(app, debug=True)
+    socketio.run(app, host='0.0.0.0', debug=True)

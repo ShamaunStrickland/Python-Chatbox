@@ -4,8 +4,7 @@ from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit
 
 app = Flask(__name__, template_folder='AnadrosSite', static_folder='static')
-socketio = SocketIO(app, async_mode='eventlet', logger=True, cors_allowed_origins=["https://anadros.com"],
-                    policy_server=False, engineio_logger=True, ssl_context='adhoc')
+socketio = SocketIO(app, async_mode='eventlet', cors_allowed_origins=["https://anadros.com"])
 
 
 # Function to log IP addresses and chat messages

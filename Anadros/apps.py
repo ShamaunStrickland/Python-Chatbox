@@ -5,8 +5,6 @@ from flask_socketio import SocketIO, emit
 
 app = Flask(__name__, template_folder='AnadrosSite', static_folder='static')
 socketio = SocketIO(app)
-# Function to start the chatbot process
-chatbox_process = None
 
 
 # Function to log IP addresses and chat messages
@@ -24,34 +22,23 @@ def start_chatbot():
     chatbox_script_path = 'chatbox.py'
     print("Running chatbot script:", chatbox_script_path)
     chatbox_process = subprocess.Popen(['python3', chatbox_script_path], stdin=subprocess.PIPE,
-                                       stdout=subprocess.PIPE,
-                                       stderr=subprocess.PIPE)
+                                       stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
 # Remove ANSI escape codes from the input text
 def remove_ansi_escape_codes(text):
-    # Remove ANSI escape codes and the specific sequence
     return re.sub(r'(\x1b\[[0-9;]*m)|(\x1B\[[0-9;]*[HJ])', '', text)
+
+
+# Start the chatbot process when the server starts
+start_chatbot()
 
 
 # Route for homepage
 @app.route('/')
 def index():
     log_request()  # Log IP address and message
-    # Run the training script synchronously
-    training_script_path = 'training.py'
-    print("Running training script:", training_script_path)
-    result = subprocess.run(['python3', training_script_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-    # Check if training script ran successfully
-    if result.returncode == 0:
-        # Start chatbot after training finishes
-        start_chatbot()
-        return render_template('index.html')
-    else:
-        # Training script failed, return error message to user
-        error_message = result.stderr.decode('utf-8')
-        return render_template('error.html', error_message=error_message)
+    return render_template('index.html')
 
 
 # Event handler for receiving messages from the frontend

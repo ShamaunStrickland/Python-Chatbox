@@ -1,6 +1,6 @@
 import subprocess
 import re
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_socketio import SocketIO, emit
 import ssl
 
@@ -11,6 +11,14 @@ ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 ssl_context.load_cert_chain('/etc/nginx/ssl/ssl_certificate.pem', '/etc/nginx/ssl/ssl_certificate_key.pem')
 
 socketio = SocketIO(app, async_mode='eventlet', cors_allowed_origins=["https://anadros.com"], ssl_context=ssl_context)
+
+
+# Force HTTPS redirection for all HTTP requests
+@app.before_request
+def force_https():
+    if request.endpoint != 'static' and not request.is_secure:
+        url = request.url.replace('http://', 'https://', 1)
+        return redirect(url, code=301)
 
 
 # Function to log IP addresses and chat messages

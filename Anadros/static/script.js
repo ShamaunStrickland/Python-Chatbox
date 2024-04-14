@@ -1,5 +1,5 @@
 // Determine the protocol (HTTP or HTTPS) based on the current page URL
-var protocol = location.protocol === 'https:' ? 'wss://' : 'ws://';
+var protocol = location.protocol === 'https://' ? 'wss://' : 'ws://';
 
 // Connect to the Flask server using Websockets with the determined protocol
 var socket = io.connect(protocol + document.domain + ':' + location.port);

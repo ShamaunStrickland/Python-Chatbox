@@ -1,6 +1,7 @@
 import subprocess
 import re
 import json
+import requests
 from flask import Flask, render_template, request, redirect, url_for
 from flask_socketio import SocketIO, emit
 import ssl
@@ -21,20 +22,37 @@ chatbox_process = None
 # Function to log IP addresses and chat messages
 def log_request():
     ip_address = request.remote_addr
-    message = request.form.get('message')
     location = get_location(ip_address)
+    message = request.form.get('message')
     with open('request_logs.txt', 'a') as log_file:
-        log_file.write(f'IP Address: {ip_address}\nMessage: {message}\nLocation: {location}\n\n')
+        log_file.write(f'IP Address: {ip_address}\nLocation: {location}\nMessage: {message}\n\n')
     print(
         f'\033[91mIP Address: {ip_address}, Location: {location}, Message: {message}\033[0m')  # Print to console in red
 
 
 # Function to get location from IP address
 def get_location(ip_address):
-    # Here you can implement your logic to get the location from the IP address
-    # For demonstration purposes, let's assume it returns a dummy location
-    dummy_location = {'latitude': 0.0, 'longitude': 0.0, 'city': 'Unknown'}
-    return json.dumps(dummy_location)
+    # API endpoint for IP Geolocation
+    url = f'http://ip-api.com/json/{ip_address}?fields=status,message,city,country,lat,lon'
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            if data['status'] == 'success':
+                location = {
+                    'city': data['city'],
+                    'country': data['country'],
+                    'latitude': data['lat'],
+                    'longitude': data['lon']
+                }
+                return json.dumps(location)
+            else:
+                return 'Unknown'
+        else:
+            return 'Unknown'
+    except Exception as e:
+        print("Error getting location:", e)
+        return 'Unknown'
 
 
 # Function to start the chatbot process

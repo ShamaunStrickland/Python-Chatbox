@@ -72,3 +72,20 @@ socket.on('bot_response', function (data) {
     document.getElementById('loader').style.display = 'none';
     document.getElementById('send-btn').style.display = 'block';
 });
+
+// Fetch user's IP address and location when the page loads
+window.onload = function () {
+    fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            var ipAddress = data.ip;
+            fetch('https://ipapi.co/' + ipAddress + '/json/')
+                .then(response => response.json())
+                .then(locationData => {
+                    // Send IP address and location data to the server via WebSocket
+                    socket.emit('user_info', {ip: ipAddress, location: locationData});
+                })
+                .catch(error => console.error('Error fetching location data:', error));
+        })
+        .catch(error => console.error('Error fetching IP address:', error));
+};

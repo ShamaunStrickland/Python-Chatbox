@@ -1,7 +1,18 @@
 // Determine the protocol (HTTP or HTTPS) based on the current page URL
 var protocol = location.protocol === 'https:' ? 'wss://' : 'ws://';
+
+// Construct the WebSocket URL
+var socketUrl = protocol + document.domain + ':' + location.port;
+
 // Connect to the Flask server using Websockets with the determined protocol
-var socket = io.connect(protocol + document.domain + ':' + location.port);
+var socket = io.connect(socketUrl);
+
+// Error handler for WebSocket connection
+socket.on('connect_error', function (error) {
+    console.error('WebSocket connection error:', error.message);
+    // Handle the error, such as displaying an error message to the user
+    // You can also attempt to reconnect here if appropriate
+});
 
 // Function to display user message in the chat box
 function displayUserMessage(userInput) {

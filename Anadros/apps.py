@@ -36,8 +36,11 @@ def start_chatbot():
     # Run chatbox script
     chatbox_script_path = 'chatbox.py'
     print("Running chatbot script:", chatbox_script_path)
-    chatbox_process = subprocess.Popen(['python3', chatbox_script_path], stdin=subprocess.PIPE,
-                                       stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    try:
+        chatbox_process = subprocess.Popen(['python3', chatbox_script_path], stdin=subprocess.PIPE,
+                                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    except Exception as e:
+        print("Error starting chatbot process:", e)
 
 
 # Remove ANSI escape codes from the input text
@@ -67,11 +70,19 @@ def handle_message(data):
     user_input = data['message']
 
     # Send user input to chatbox script
-    chatbox_process.stdin.write(user_input.encode('utf-8') + b'\n')
-    chatbox_process.stdin.flush()
+    try:
+        chatbox_process.stdin.write(user_input.encode('utf-8') + b'\n')
+        chatbox_process.stdin.flush()
+    except Exception as e:
+        emit('bot_response', {'bot_response': f'Error sending message to chatbot: {e}'})
+        return
 
     # Read the response from chatbox script
-    bot_response = chatbox_process.stdout.readline().decode('utf-8').strip()
+    try:
+        bot_response = chatbox_process.stdout.readline().decode('utf-8').strip()
+    except Exception as e:
+        emit('bot_response', {'bot_response': f'Error reading response from chatbot: {e}'})
+        return
 
     # Remove ANSI escape codes from the bot response
     clean_response = remove_ansi_escape_codes(bot_response)
@@ -89,4 +100,7 @@ def handle_message(data):
 
 if __name__ == '__main__':
     # Start the Flask application
-    socketio.run(app, host='0.0.0.0', debug=True)
+    try:
+        socketio.run(app, host='0.0.0.0', debug=True)
+    except Exception as e:
+        print("Error running Flask application:", e)

@@ -1,10 +1,11 @@
 import subprocess
 import re
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, request, redirect
 from flask_socketio import SocketIO, emit
 import ssl
+import requests
 
-app = Flask(__name__, template_folder='AnadrosSite', static_folder='static')
+app = Flask(__name__)
 
 # Create SSL context
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
@@ -28,6 +29,7 @@ def log_request():
     message = request.form.get('message')
     with open('request_logs.txt', 'a') as log_file:
         log_file.write(f'IP Address: {ip_address}\nMessage: {message}\n\n')
+    return ip_address
 
 
 # Function to start the chatbot process
@@ -55,8 +57,12 @@ start_chatbot()
 # Route for homepage
 @app.route('/')
 def index():
-    log_request()  # Log IP address and message
-    return render_template('index.html')
+    ip_address = log_request()  # Log IP address and message
+    location_response = requests.get(f'https://ipapi.co/{ip_address}/json/')
+    location_data = location_response.json()
+    print("IP Address:", ip_address)
+    print("Location:", location_data)
+    return ""
 
 
 # Event handler for receiving messages from the frontend

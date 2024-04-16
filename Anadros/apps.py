@@ -1,11 +1,11 @@
 import subprocess
 import re
-from flask import Flask, request, redirect
+import json
+from flask import Flask, render_template, request, redirect, url_for
 from flask_socketio import SocketIO, emit
 import ssl
-import requests
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='AnadrosSite', static_folder='static')
 
 # Create SSL context
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
@@ -14,22 +14,27 @@ ssl_context.load_cert_chain('/etc/nginx/ssl/ssl_certificate.pem', '/etc/nginx/ss
 socketio = SocketIO(app, async_mode='eventlet', cors_allowed_origins=["https://anadros.com"], ssl_context=ssl_context,
                     logger=True, engineio_logger=True, engineio_logger_name=True)
 
-
-# Force HTTPS redirection for all HTTP requests
-@app.before_request
-def force_https():
-    if request.endpoint != 'static' and not request.is_secure:
-        url = request.url.replace('http://', 'https://', 1)
-        return redirect(url, code=301)
+# Global variable to store the chatbot process
+chatbox_process = None
 
 
 # Function to log IP addresses and chat messages
 def log_request():
     ip_address = request.remote_addr
     message = request.form.get('message')
+    location = get_location(ip_address)
     with open('request_logs.txt', 'a') as log_file:
-        log_file.write(f'IP Address: {ip_address}\nMessage: {message}\n\n')
-    return ip_address
+        log_file.write(f'IP Address: {ip_address}\nMessage: {message}\nLocation: {location}\n\n')
+    print(
+        f'\033[91mIP Address: {ip_address}, Location: {location}, Message: {message}\033[0m')  # Print to console in red
+
+
+# Function to get location from IP address
+def get_location(ip_address):
+    # Here you can implement your logic to get the location from the IP address
+    # For demonstration purposes, let's assume it returns a dummy location
+    dummy_location = {'latitude': 0.0, 'longitude': 0.0, 'city': 'Unknown'}
+    return json.dumps(dummy_location)
 
 
 # Function to start the chatbot process
@@ -57,12 +62,8 @@ start_chatbot()
 # Route for homepage
 @app.route('/')
 def index():
-    ip_address = log_request()  # Log IP address and message
-    location_response = requests.get(f'https://ipapi.co/{ip_address}/json/')
-    location_data = location_response.json()
-    print("IP Address:", ip_address)
-    print("Location:", location_data)
-    return ""
+    log_request()  # Log IP address and message
+    return render_template('index.html')
 
 
 # Event handler for receiving messages from the frontend

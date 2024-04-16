@@ -2,7 +2,7 @@
 var protocol = location.protocol === 'https:' ? 'wss://' : 'ws://';
 
 // Connect to the Flask server using Websockets with the determined protocol
-var socket = io.connect(protocol + document.domain + ':' + location.port);
+var socket = io.connect(protocol + 'anadros.com');
 
 // Function to display user message in the chat box
 function displayUserMessage(userInput) {

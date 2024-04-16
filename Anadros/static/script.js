@@ -61,3 +61,21 @@ socket.on('bot_response', function (data) {
     document.getElementById('loader').style.display = 'none';
     document.getElementById('send-btn').style.display = 'block';
 });
+
+// Error handler for WebSocket connection
+socket.io.on('connect_error', function (error) {
+    console.error('WebSocket connection error:', error);
+});
+
+// Error handler for Socket.IO connection
+socket.io.on('error', function (error) {
+    console.error('Socket.IO error:', error);
+});
+
+// Error handler for general JavaScript errors
+window.onerror = function (message, source, lineno, colno, error) {
+    console.error('JavaScript error:', message, 'at', source, 'line', lineno);
+    if (error) {
+        console.error('Error object:', error);
+    }
+};

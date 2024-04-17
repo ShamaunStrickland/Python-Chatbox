@@ -72,3 +72,8 @@ socket.on('bot_response', function (data) {
     document.getElementById('loader').style.display = 'none';
     document.getElementById('send-btn').style.display = 'block';
 });
+
+// Keep-alive mechanism: Send a message to the server every 15 seconds to keep the connection alive
+setInterval(function () {
+    socket.emit('keep_alive');
+}, 15000); // Send a keep-alive message every 15 seconds

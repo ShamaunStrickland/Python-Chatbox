@@ -2,9 +2,10 @@ import subprocess
 import re
 import json
 import requests
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit
 import ssl
+import time
 
 app = Flask(__name__, template_folder='AnadrosSite', static_folder='static')
 
@@ -17,6 +18,7 @@ socketio = SocketIO(app, async_mode='eventlet', cors_allowed_origins=["https://a
 
 # Global variable to store the chatbot process
 chatbox_process = None
+last_activity_time = time.time()
 
 
 # Function to log IP addresses and chat messages
@@ -87,6 +89,8 @@ def index():
 # Event handler for receiving messages from the frontend
 @socketio.on('send_message')
 def handle_message(data):
+    global last_activity_time
+    last_activity_time = time.time()  # Update last activity time
     log_request()  # Log IP address and message
     if chatbox_process is None:
         emit('bot_response', {'bot_response': 'Chatbot is not ready. Please wait.'})
@@ -123,9 +127,26 @@ def handle_message(data):
         emit('bot_response', {'bot_response': clean_response})
 
 
+# Function to periodically check for inactivity and close the connection
+def check_inactivity():
+    global last_activity_time
+    while True:
+        if time.time() - last_activity_time > 1800:  # Close connection after 30 minutes of inactivity
+            print("Closing connection due to inactivity")
+            socketio.disconnect()
+            break
+        time.sleep(60)  # Check every minute for inactivity
+
+
 if __name__ == '__main__':
     # Start the Flask application
     try:
+        # Start the inactivity checker in a separate thread
+        import threading
+
+        inactivity_checker = threading.Thread(target=check_inactivity)
+        inactivity_checker.start()
+
         socketio.run(app, host='0.0.0.0', port=80, debug=True)
     except Exception as e:
         print("Error running Flask application:", e)

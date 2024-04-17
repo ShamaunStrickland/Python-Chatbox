@@ -126,6 +126,6 @@ def handle_message(data):
 if __name__ == '__main__':
     # Start the Flask application
     try:
-        socketio.run(app, host='0.0.0.0', port=443, debug=True)
+        socketio.run(app, host='0.0.0.0', port=80, debug=True)
     except Exception as e:
         print("Error running Flask application:", e)

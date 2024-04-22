@@ -2,7 +2,7 @@
 var protocol = location.protocol === 'https:' ? 'wss://' : 'ws://';
 
 // Construct the WebSocket URL
-var socketUrl = protocol + document.domain + ':' + location.port + '/websocket';
+var socketUrl = protocol + document.domain + ':12345'; // Adjust the port number as needed
 
 // Connect to the Flask server using Websockets with the determined protocol
 var socket = new WebSocket(socketUrl);
@@ -45,11 +45,8 @@ function sendMessage() {
     var userInput = document.getElementById('user-input').value;
     // Display user message in the chat box
     displayUserMessage(userInput);
-    // Show loader icon and hide send button
-    document.getElementById('loader').style.display = 'block';
-    document.getElementById('send-btn').style.display = 'none';
     // Send user message to Flask server via Websockets
-    socket.send(JSON.stringify({message: userInput}));
+    socket.send(userInput);
 }
 
 // Event listener for send button click
@@ -67,13 +64,10 @@ socket.onmessage = function (event) {
     // Log the received data for debugging
     console.log('Received data from server:', event.data);
     // Display bot response in the chat box
-    displayBotResponse(JSON.parse(event.data).bot_response);
-    // Hide loader icon and show send button
-    document.getElementById('loader').style.display = 'none';
-    document.getElementById('send-btn').style.display = 'block';
+    displayBotResponse(event.data);
 };
 
 // Keep-alive mechanism: Send a message to the server every 15 seconds to keep the connection alive
 setInterval(function () {
-    socket.send(JSON.stringify({keep_alive: true}));
+    socket.send('keep_alive');
 }, 15000); // Send a keep-alive message every 15 seconds

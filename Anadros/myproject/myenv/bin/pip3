@@ -1,4 +1,4 @@
-#!/root/Python-Chatbox/Anadros/myproject/myenv/bin/python3
+#!/Users/shamaunstrickland/Projects/Nadrd/Python-Chatbox/Anadros/myproject/myenv/bin/python3.12
 # -*- coding: utf-8 -*-
 import re
 import sys

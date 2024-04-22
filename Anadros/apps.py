@@ -2,21 +2,22 @@ import subprocess
 import re
 import json
 import requests
-from flask import Flask, render_template, request
-from flask_socketio import SocketIO, emit
-import ssl
 import time
+import ssl
+import threading
+from flask import Flask, render_template, request
+from flask_sockets import Sockets
+from gevent import pywsgi
+from geventwebsocket.handler import WebSocketHandler
 
 app = Flask(__name__, template_folder='AnadrosSite', static_folder='static')
+sockets = Sockets(app)
 
 # Create SSL context
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 ssl_context.load_cert_chain('/etc/nginx/ssl/ssl_certificate.pem', '/etc/nginx/ssl/ssl_certificate_key.pem')
 
-socketio = SocketIO(app, async_mode='eventlet', cors_allowed_origins=["https://anadros.com"], ssl_context=ssl_context,
-                    logger=True, engineio_logger=True, engineio_logger_name=True)
-
-# Global variable to store the chatbot process
+# Global variables
 chatbox_process = None
 last_activity_time = time.time()
 
@@ -86,45 +87,50 @@ def index():
     return render_template('index.html')
 
 
-# Event handler for receiving messages from the frontend
-@socketio.on('send_message')
-def handle_message(data):
+# WebSocket route for receiving messages from the frontend
+@sockets.route('/websocket')
+def handle_websocket(ws):
     global last_activity_time
     last_activity_time = time.time()  # Update last activity time
-    log_request()  # Log IP address and message
-    if chatbox_process is None:
-        emit('bot_response', {'bot_response': 'Chatbot is not ready. Please wait.'})
-        return
 
-    user_input = data['message']
+    while not ws.closed:
+        # Receive message from the frontend
+        message = ws.receive()
+        if message:
+            user_input = json.loads(message)
 
-    # Send user input to chatbox script
-    try:
-        chatbox_process.stdin.write(user_input.encode('utf-8') + b'\n')
-        chatbox_process.stdin.flush()
-    except Exception as e:
-        emit('bot_response', {'bot_response': f'Error sending message to chatbot: {e}'})
-        return
+            if chatbox_process is None:
+                # If chatbot is not ready, send an error message to the frontend
+                ws.send(json.dumps({'bot_response': 'Chatbot is not ready. Please wait.'}))
+                continue
 
-    # Read the response from chatbox script
-    try:
-        bot_response = chatbox_process.stdout.readline().decode('utf-8').strip()
-    except Exception as e:
-        emit('bot_response', {'bot_response': f'Error reading response from chatbot: {e}'})
-        return
+            # Send user input to chatbox script
+            try:
+                chatbox_process.stdin.write((user_input['message'] + '\n').encode('utf-8'))
+                chatbox_process.stdin.flush()
+            except Exception as e:
+                ws.send(json.dumps({'bot_response': f'Error sending message to chatbot: {e}'}))
+                continue
 
-    # Remove ANSI escape codes from the bot response
-    clean_response = remove_ansi_escape_codes(bot_response)
+            # Read the response from chatbox script
+            try:
+                bot_response = chatbox_process.stdout.readline().decode('utf-8').strip()
+            except Exception as e:
+                ws.send(json.dumps({'bot_response': f'Error reading response from chatbot: {e}'}))
+                continue
 
-    # Check if the clean response is empty or contains unexpected characters
-    if not clean_response:
-        emit('bot_response', {'bot_response': 'Error: Empty response from bot'})
-    elif not clean_response.startswith('Error:'):
-        # If clean response doesn't start with 'Error:', emit it as a bot response
-        emit('bot_response', {'bot_response': clean_response})
-    else:
-        # If clean response starts with 'Error:', emit it as an error
-        emit('bot_response', {'bot_response': clean_response})
+            # Remove ANSI escape codes from the bot response
+            clean_response = remove_ansi_escape_codes(bot_response)
+
+            # Check if the clean response is empty or contains unexpected characters
+            if not clean_response:
+                ws.send(json.dumps({'bot_response': 'Error: Empty response from bot'}))
+            elif not clean_response.startswith('Error:'):
+                # If clean response doesn't start with 'Error:', send it as a bot response to the frontend
+                ws.send(json.dumps({'bot_response': clean_response}))
+            else:
+                # If clean response starts with 'Error:', send it as an error to the frontend
+                ws.send(json.dumps({'bot_response': clean_response}))
 
 
 # Function to periodically check for inactivity and close the connection
@@ -133,20 +139,17 @@ def check_inactivity():
     while True:
         if time.time() - last_activity_time > 1800:  # Close connection after 30 minutes of inactivity
             print("Closing connection due to inactivity")
-            socketio.disconnect()
             break
         time.sleep(60)  # Check every minute for inactivity
 
 
+# Start the Flask application
 if __name__ == '__main__':
-    # Start the Flask application
-    try:
-        # Start the inactivity checker in a separate thread
-        import threading
+    inactivity_checker = threading.Thread(target=check_inactivity)
+    inactivity_checker.start()
 
-        inactivity_checker = threading.Thread(target=check_inactivity)
-        inactivity_checker.start()
-
-        socketio.run(app, host='0.0.0.0', port=80, debug=True)
-    except Exception as e:
-        print("Error running Flask application:", e)
+    server = pywsgi.WSGIServer(('0.0.0.0', 80), app, handler_class=WebSocketHandler,
+                               keyfile='/etc/nginx/ssl/ssl_certificate_key.pem',
+                               certfile='/etc/nginx/ssl/ssl_certificate.pem')
+    print("Server running...")
+    server.serve_forever()

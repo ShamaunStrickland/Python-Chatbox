@@ -2,17 +2,17 @@
 var protocol = location.protocol === 'https:' ? 'wss://' : 'ws://';
 
 // Construct the WebSocket URL
-var socketUrl = protocol + document.domain + ':' + location.port;
+var socketUrl = protocol + document.domain + ':' + location.port + '/websocket';
 
 // Connect to the Flask server using Websockets with the determined protocol
-var socket = io.connect(socketUrl);
+var socket = new WebSocket(socketUrl);
 
 // Error handler for WebSocket connection
-socket.on('connect_error', function (error) {
+socket.onerror = function (error) {
     console.error('WebSocket connection error:', error.message);
     // Handle the error, such as displaying an error message to the user
     // You can also attempt to reconnect here if appropriate
-});
+};
 
 // Function to display user message in the chat box
 function displayUserMessage(userInput) {
@@ -49,7 +49,7 @@ function sendMessage() {
     document.getElementById('loader').style.display = 'block';
     document.getElementById('send-btn').style.display = 'none';
     // Send user message to Flask server via Websockets
-    socket.emit('send_message', {message: userInput});
+    socket.send(JSON.stringify({message: userInput}));
 }
 
 // Event listener for send button click
@@ -63,17 +63,17 @@ document.getElementById('user-input').addEventListener('keypress', function (eve
 });
 
 // Event handler for receiving bot response from the server via Websockets
-socket.on('bot_response', function (data) {
+socket.onmessage = function (event) {
     // Log the received data for debugging
-    console.log('Received data from server:', data);
+    console.log('Received data from server:', event.data);
     // Display bot response in the chat box
-    displayBotResponse(data.bot_response);
+    displayBotResponse(JSON.parse(event.data).bot_response);
     // Hide loader icon and show send button
     document.getElementById('loader').style.display = 'none';
     document.getElementById('send-btn').style.display = 'block';
-});
+};
 
 // Keep-alive mechanism: Send a message to the server every 15 seconds to keep the connection alive
 setInterval(function () {
-    socket.emit('keep_alive');
+    socket.send(JSON.stringify({keep_alive: true}));
 }, 15000); // Send a keep-alive message every 15 seconds

@@ -1,8 +1,8 @@
 // Determine the protocol (HTTP or HTTPS) based on the current page URL
 var protocol = location.protocol === 'https:' ? 'wss://' : 'ws://';
 
-// Construct the WebSocket URL
-var socketUrl = protocol + document.domain + ':12345'; // Adjust the port number as needed
+// Construct the WebSocket URL with the correct port number
+var socketUrl = protocol + document.domain + ':8000'; // Assuming your WebSocket server is running on port 8000
 
 // Connect to the Flask server using Websockets with the determined protocol
 var socket = new WebSocket(socketUrl);

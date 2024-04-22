@@ -3,18 +3,11 @@ import re
 import json
 import requests
 from flask import Flask, render_template, request
-from flask_socketio import SocketIO, emit
 import ssl
 import time
+import socket
 
 app = Flask(__name__, template_folder='AnadrosSite', static_folder='static')
-
-# Create SSL context
-ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-ssl_context.load_cert_chain('/etc/nginx/ssl/ssl_certificate.pem', '/etc/nginx/ssl/ssl_certificate_key.pem')
-
-socketio = SocketIO(app, cors_allowed_origins=["https://anadros.com"], ssl_context=ssl_context,
-                    logger=True, engineio_logger=True, engineio_logger_name=True)
 
 # Global variable to store the chatbot process
 chatbox_process = None
@@ -70,11 +63,6 @@ def start_chatbot():
         print("Error starting chatbot process:", e)
 
 
-# Remove ANSI escape codes from the input text
-def remove_ansi_escape_codes(text):
-    return re.sub(r'(\x1b\[[0-9;]*m)|(\x1B\[[0-9;]*[HJ])', '', text)
-
-
 # Start the chatbot process when the server starts
 start_chatbot()
 
@@ -86,45 +74,47 @@ def index():
     return render_template('index.html')
 
 
+# Socket setup
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind(('0.0.0.0', 12345))  # Change port as needed
+server_socket.listen(1)
+
+
 # Event handler for receiving messages from the frontend
-@socketio.on('send_message')
-def handle_message(data):
+def handle_message(client_socket):
     global last_activity_time
     last_activity_time = time.time()  # Update last activity time
     log_request()  # Log IP address and message
     if chatbox_process is None:
-        emit('bot_response', {'bot_response': 'Chatbot is not ready. Please wait.'})
+        client_socket.send(b'Chatbot is not ready. Please wait.')
         return
 
-    user_input = data['message']
+    user_input = client_socket.recv(1024).decode('utf-8')
 
     # Send user input to chatbox script
     try:
         chatbox_process.stdin.write(user_input.encode('utf-8') + b'\n')
         chatbox_process.stdin.flush()
     except Exception as e:
-        emit('bot_response', {'bot_response': f'Error sending message to chatbot: {e}'})
+        client_socket.send(f'Error sending message to chatbot: {e}'.encode('utf-8'))
         return
 
     # Read the response from chatbox script
     try:
         bot_response = chatbox_process.stdout.readline().decode('utf-8').strip()
     except Exception as e:
-        emit('bot_response', {'bot_response': f'Error reading response from chatbot: {e}'})
+        client_socket.send(f'Error reading response from chatbot: {e}'.encode('utf-8'))
         return
 
-    # Remove ANSI escape codes from the bot response
-    clean_response = remove_ansi_escape_codes(bot_response)
-
     # Check if the clean response is empty or contains unexpected characters
-    if not clean_response:
-        emit('bot_response', {'bot_response': 'Error: Empty response from bot'})
-    elif not clean_response.startswith('Error:'):
+    if not bot_response:
+        client_socket.send('Error: Empty response from bot'.encode('utf-8'))
+    elif not bot_response.startswith('Error:'):
         # If clean response doesn't start with 'Error:', emit it as a bot response
-        emit('bot_response', {'bot_response': clean_response})
+        client_socket.send(bot_response.encode('utf-8'))
     else:
         # If clean response starts with 'Error:', emit it as an error
-        emit('bot_response', {'bot_response': clean_response})
+        client_socket.send(bot_response.encode('utf-8'))
 
 
 # Function to periodically check for inactivity and close the connection
@@ -133,7 +123,6 @@ def check_inactivity():
     while True:
         if time.time() - last_activity_time > 1800:  # Close connection after 30 minutes of inactivity
             print("Closing connection due to inactivity")
-            socketio.disconnect()
             break
         time.sleep(60)  # Check every minute for inactivity
 
@@ -147,6 +136,8 @@ if __name__ == '__main__':
         inactivity_checker = threading.Thread(target=check_inactivity)
         inactivity_checker.start()
 
-        socketio.run(app, host='0.0.0.0', port=80, debug=True)
+        while True:
+            client_socket, addr = server_socket.accept()
+            handle_message(client_socket)
     except Exception as e:
         print("Error running Flask application:", e)

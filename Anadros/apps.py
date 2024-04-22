@@ -76,7 +76,7 @@ def index():
 
 # Socket setup
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_socket.bind(('0.0.0.0', 8000))  # Change port as needed
+server_socket.bind(('0.0.0.0', 12345))  # Change port as needed
 server_socket.listen(1)
 
 

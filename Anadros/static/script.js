@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var protocol = location.protocol === 'https:' ? 'wss://' : 'ws://';
 
     // Construct the WebSocket URL with the correct port number
-    var socketUrl = protocol + document.domain + ':8000'; // Adjust the port number as needed
+    var socketUrl = protocol + document.domain + ':12345'; // Adjust the port number as needed
 
     // Connect to the Flask server using Websockets with the determined protocol
     var socket = new WebSocket(socketUrl);

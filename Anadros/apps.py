@@ -13,7 +13,7 @@ app = Flask(__name__, template_folder='AnadrosSite', static_folder='static')
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 ssl_context.load_cert_chain('/etc/nginx/ssl/ssl_certificate.pem', '/etc/nginx/ssl/ssl_certificate_key.pem')
 
-socketio = SocketIO(app, async_mode='eventlet', cors_allowed_origins=["https://anadros.com"], ssl_context=ssl_context,
+socketio = SocketIO(app, cors_allowed_origins=["https://anadros.com"], ssl_context=ssl_context,
                     logger=True, engineio_logger=True, engineio_logger_name=True)
 
 # Global variable to store the chatbot process

@@ -20,7 +20,7 @@ function displayUserMessage(userInput) {
     var messageDiv = document.createElement('div');
     messageDiv.className = 'user-message';
     // Set the inner text of the div to the user input
-    messageDiv.innerText = 'User: ' + userInput.trim(); // Trim any leading or trailing whitespace
+    messageDiv.textContent = 'User: ' + userInput.trim(); // Trim any leading or trailing whitespace
     // Append the message div to the chat box
     document.getElementById('chat-box').appendChild(messageDiv);
     // Clear input field
@@ -35,7 +35,7 @@ function displayBotResponse(botResponse) {
     var messageDiv = document.createElement('div');
     messageDiv.className = 'bot-message';
     // Set the inner text of the div to the cleaned bot response
-    messageDiv.innerText = 'Bot: ' + botResponse.trim(); // Trim any leading or trailing whitespace
+    messageDiv.textContent = 'Bot: ' + botResponse.trim(); // Trim any leading or trailing whitespace
     // Append the message div to the chat box
     document.getElementById('chat-box').appendChild(messageDiv);
 }

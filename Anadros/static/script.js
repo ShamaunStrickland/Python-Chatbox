@@ -1,50 +1,63 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Connect to the Flask-SocketIO server
-    var socket = io();  // Automatically tries to connect to the server that serves the page
+// Import the Socket.IO client library
+import {io} from "https://cdn.socket.io/4.7.5/socket.io.esm.min.js";
 
-    // Function to display user message in the chat box
-    function displayUserMessage(userInput) {
-        var messageDiv = document.createElement('div');
-        messageDiv.className = 'user-message';
-        messageDiv.textContent = 'User: ' + userInput.trim();
-        document.getElementById('chat-box').appendChild(messageDiv);
-        document.getElementById('user-input').value = '';
-    }
+// Connect to the server
+const socket = io();
 
-    // Function to display bot response in the chat box
-    function displayBotResponse(botResponse) {
-        botResponse = botResponse.replace(/[^\x20-\x7E]/g, ''); // Clean non-printable characters
-        var messageDiv = document.createElement('div');
-        messageDiv.className = 'bot-message';
-        messageDiv.textContent = 'Bot: ' + botResponse.trim();
-        document.getElementById('chat-box').appendChild(messageDiv);
-    }
+// Event listener for the 'connect' event
+socket.on('connect', () => {
+    console.log('Connected to the server.');
+});
 
-    // Function to send user message to Flask server via Socket.IO
-    function sendMessage() {
-        var userInput = document.getElementById('user-input').value;
+// Event listener for receiving bot responses
+socket.on('bot_response', (data) => {
+    displayBotResponse(data);
+});
+
+// Event listener for the 'disconnect' event
+socket.on('disconnect', () => {
+    console.log('Disconnected from the server.');
+});
+
+// Function to display bot responses in the chat box
+function displayBotResponse(response) {
+    const messageDiv = document.createElement('div');
+    messageDiv.textContent = 'Bot: ' + response;
+    messageDiv.className = 'bot-message';
+    document.getElementById('chat-box').appendChild(messageDiv);
+}
+
+// Function to send a message to the server
+function sendMessage(message) {
+    socket.emit('chat_message', message);
+}
+
+// Add event listener to the send button
+document.getElementById('send-btn').addEventListener('click', () => {
+    const userInput = document.getElementById('user-input').value.trim();
+    if (userInput) {
         displayUserMessage(userInput);
-        socket.emit('chat_message', userInput); // Emitting a message to the server
+        sendMessage(userInput);
+        document.getElementById('user-input').value = ''; // Clear the input field after sending
     }
+});
 
-    // Event listener for send button click
-    document.getElementById('send-btn').addEventListener('click', function () {
-        document.getElementById('loader').style.display = 'inline-block';
-        sendMessage();
-    });
+// Function to display user messages in the chat box
+function displayUserMessage(message) {
+    const messageDiv = document.createElement('div');
+    messageDiv.textContent = 'User: ' + message;
+    messageDiv.className = 'user-message';
+    document.getElementById('chat-box').appendChild(messageDiv);
+}
 
-    // Event listener for Enter key press in input field
-    document.getElementById('user-input').addEventListener('keypress', function (event) {
-        if (event.keyCode === 13) {
-            document.getElementById('loader').style.display = 'inline-block';
-            sendMessage();
+// Add event listener for the 'Enter' key in the input field
+document.getElementById('user-input').addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        const userInput = document.getElementById('user-input').value.trim();
+        if (userInput) {
+            displayUserMessage(userInput);
+            sendMessage(userInput);
+            document.getElementById('user-input').value = ''; // Clear the input field after sending
         }
-    });
-
-    // Event handler for receiving bot response from the server via Socket.IO
-    socket.on('bot_response', function (data) {
-        document.getElementById('loader').style.display = 'none';
-        console.log('Received data from server:', data);
-        displayBotResponse(data);
-    });
+    }
 });

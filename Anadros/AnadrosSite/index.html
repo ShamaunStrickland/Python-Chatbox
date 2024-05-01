@@ -3,29 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.socket.io/socket.io-4.0.0.min.js"></script>
     <title>Chatbot</title>
-    <!--Ignore Mixed Content -->
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
-    <!-- Link to CSS -->
     <link rel="stylesheet" href="/static/styles.css">
-    <!-- Link to Favicon -->
     <link rel="icon" href="/static/favicon.png" type="image/png">
+    <script type="module" src="/static/script.js"></script>
 </head>
 <body>
 <div class="chat-container">
     <div class="chat-box" id="chat-box">
         <!-- Messages will be displayed here -->
     </div>
-    <!-- Send button with loader -->
     <div class="button-container">
         <input type="text" id="user-input" placeholder="Type your message...">
         <button id="send-btn">Send</button>
-        <div class="loader" id="loader"></div>
+        <div class="loader" id="loader" style="display:none;"></div>
     </div>
 </div>
-
-<!-- Link to JavaScript -->
-<script src="/static/script.js"></script>
 </body>
 </html>

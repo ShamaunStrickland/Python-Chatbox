@@ -20,9 +20,10 @@ def start_chatbot():
     dir_path = os.path.dirname(os.path.realpath(__file__))
     chatbot_script_path = os.path.join(dir_path, 'chatbot.py')
     try:
-        chatbot_process = subprocess.Popen(['python3', chatbot_script_path], stdin=subprocess.PIPE,
-                                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        print("Chatbot process started successfully.")
+        if chatbot_process is None or chatbot_process.poll() is not None:
+            chatbot_process = subprocess.Popen(['python3', chatbot_script_path], stdin=subprocess.PIPE,
+                                               stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            print("Chatbot process started successfully.")
     except Exception as e:
         print(f"Error starting chatbot process: {e}")
 
@@ -70,6 +71,7 @@ def on_connect():
 def handle_message(data):
     ip_address = request.remote_addr
     log_request(ip_address, data)
+    start_chatbot()  # Ensure chatbot is running before attempting to write to it
     if chatbot_process and chatbot_process.poll() is None:
         try:
             chatbot_process.stdin.write(data.encode('utf-8') + b'\n')
@@ -83,7 +85,6 @@ def handle_message(data):
     else:
         emit('bot_response', 'Chatbot is not ready. Please wait.')
         print("Chatbot is not ready. Please wait.")
-        start_chatbot()  # Try to restart the chatbot if not running
 
 
 def check_inactivity():
@@ -97,7 +98,7 @@ def check_inactivity():
 
 
 if __name__ == '__main__':
-    start_chatbot()
+    start_chatbot()  # Start chatbot at the launch of the application
     inactivity_checker = threading.Thread(target=check_inactivity)
     inactivity_checker.start()
     socketio.run(app, host='0.0.0.0', port=8000)

@@ -6,6 +6,7 @@ import requests
 import time
 import os
 import threading
+import select
 
 app = Flask(__name__, template_folder='AnadrosSite', static_folder='static')
 socketio = SocketIO(app)
@@ -15,17 +16,17 @@ chatbot_process = None
 last_activity_time = time.time()
 
 
-def start_chatbot():
+def start_chatbox():
     global chatbot_process
     dir_path = os.path.dirname(os.path.realpath(__file__))
-    chatbot_script_path = os.path.join(dir_path, 'chatbot.py')
+    chatbox_script_path = os.path.join(dir_path, 'chatbox.py')
     if chatbot_process is None or chatbot_process.poll() is not None:
         try:
-            chatbot_process = subprocess.Popen(['python3', chatbot_script_path], stdin=subprocess.PIPE,
+            chatbot_process = subprocess.Popen(['python3', chatbox_script_path], stdin=subprocess.PIPE,
                                                stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            print("Chatbot process started successfully.")
+            print("Chatbox process started successfully.")
         except Exception as e:
-            print(f"Error starting chatbot process: {e}")
+            print(f"Error starting chatbox process: {e}")
 
 
 def get_location(ip_address):
@@ -67,26 +68,37 @@ def on_connect():
     print("Client connected.")
 
 
+def non_blocking_read(output):
+    ready, _, _ = select.select([output], [], [], 5.0)  # 5 seconds timeout
+    if ready:
+        return output.read().decode('utf-8').strip()
+    else:
+        return "No response in time."
+
+
 @socketio.on('chat_message')
 def handle_message(data):
     ip_address = request.remote_addr
     log_request(ip_address, data)
     if chatbot_process and chatbot_process.poll() is None:
         try:
+            print("Sending data to chatbot:", data)
             chatbot_process.stdin.write(data.encode('utf-8') + b'\n')
             chatbot_process.stdin.flush()
-            print("Data sent to chatbot:", data)  # Debug print
-            response = chatbot_process.stdout.readline().decode('utf-8').strip()
-            print("Raw response from chatbot:", response)  # Debug print
-            emit('bot_response', response)
-            if not response:
-                print("No response received, attempting to read more...")
+            response = non_blocking_read(chatbot_process.stdout)
+            print("Received response from chatbot:", response)
+            if response:
+                emit('bot_response', response)
+                print("Response sent to the client.")
+            else:
+                print("No response received or empty response.")
         except Exception as e:
             emit('bot_response', f'Error communicating with chatbot: {e}')
             print(f"Error communicating with chatbot: {e}")
     else:
         print("Chatbot is not running, starting now.")
-        start_chatbot()  # Start chatbot if not running
+        start_chatbot()
+        emit('bot_response', 'Chatbot is starting, please wait.')
 
 
 def check_inactivity():
@@ -100,7 +112,7 @@ def check_inactivity():
 
 
 if __name__ == '__main__':
-    start_chatbot()  # Start chatbot at the launch of the application
+    start_chatbox()  # Start chatbox at the launch of the application
     inactivity_checker = threading.Thread(target=check_inactivity)
     inactivity_checker.start()
     socketio.run(app, host='0.0.0.0', port=8000)

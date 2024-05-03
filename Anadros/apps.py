@@ -4,6 +4,7 @@ import subprocess
 import json
 import requests
 import time
+import os
 import threading
 
 app = Flask(__name__, template_folder='AnadrosSite', static_folder='static')
@@ -16,12 +17,14 @@ last_activity_time = time.time()
 
 def start_chatbot():
     global chatbot_process
-    chatbot_script_path = 'chatbot.py'
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    chatbot_script_path = os.path.join(dir_path, 'chatbot.py')
     try:
         chatbot_process = subprocess.Popen(['python3', chatbot_script_path], stdin=subprocess.PIPE,
                                            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        print("Chatbot process started successfully.")
     except Exception as e:
-        print("Error starting chatbot process:", e)
+        print(f"Error starting chatbot process: {e}")
 
 
 def get_location(ip_address):
@@ -40,7 +43,7 @@ def get_location(ip_address):
                 return json.dumps(location)
         return 'Unknown'
     except Exception as e:
-        print("Error getting location:", e)
+        print(f"Error getting location: {e}")
         return 'Unknown'
 
 
@@ -48,7 +51,7 @@ def log_request(ip_address, message):
     location = get_location(ip_address)
     with open('request_logs.txt', 'a') as log_file:
         log_file.write(f'IP Address: {ip_address}\nLocation: {location}\nMessage: {message}\n\n')
-    print(f'\033[91mIP Address: {ip_address}, Location: {location}, Message: {message}\033[0m')
+    print(f'IP Address: {ip_address}, Location: {location}, Message: {message}')
 
 
 @app.route('/')
@@ -60,22 +63,27 @@ def index():
 def on_connect():
     global last_activity_time
     last_activity_time = time.time()
+    print("Client connected.")
 
 
 @socketio.on('chat_message')
 def handle_message(data):
     ip_address = request.remote_addr
     log_request(ip_address, data)
-    if chatbot_process:
+    if chatbot_process and chatbot_process.poll() is None:
         try:
             chatbot_process.stdin.write(data.encode('utf-8') + b'\n')
             chatbot_process.stdin.flush()
             response = chatbot_process.stdout.readline().decode('utf-8').strip()
             emit('bot_response', response)
+            print("Response sent to the client.")
         except Exception as e:
             emit('bot_response', f'Error communicating with chatbot: {e}')
+            print(f"Error communicating with chatbot: {e}")
     else:
         emit('bot_response', 'Chatbot is not ready. Please wait.')
+        print("Chatbot is not ready. Please wait.")
+        start_chatbot()  # Try to restart the chatbot if not running
 
 
 def check_inactivity():

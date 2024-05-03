@@ -113,6 +113,7 @@ def check_inactivity():
 
 
 if __name__ == '__main__':
+    # Start the chatbox
     if start_chatbox():
         print("Chatbox is running.")
     else:
@@ -129,3 +130,6 @@ if __name__ == '__main__':
             print(f"Error sending test message to chatbot: {e}")
     else:
         print("Chatbox is not running.")
+
+    # Run the Flask app
+    socketio.run(app, host='0.0.0.0', port=8000)

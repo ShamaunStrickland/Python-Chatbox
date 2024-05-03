@@ -19,13 +19,13 @@ def start_chatbot():
     global chatbot_process
     dir_path = os.path.dirname(os.path.realpath(__file__))
     chatbot_script_path = os.path.join(dir_path, 'chatbot.py')
-    try:
-        if chatbot_process is None or chatbot_process.poll() is not None:
+    if chatbot_process is None or chatbot_process.poll() is not None:
+        try:
             chatbot_process = subprocess.Popen(['python3', chatbot_script_path], stdin=subprocess.PIPE,
                                                stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             print("Chatbot process started successfully.")
-    except Exception as e:
-        print(f"Error starting chatbot process: {e}")
+        except Exception as e:
+            print(f"Error starting chatbot process: {e}")
 
 
 def get_location(ip_address):
@@ -71,20 +71,22 @@ def on_connect():
 def handle_message(data):
     ip_address = request.remote_addr
     log_request(ip_address, data)
-    start_chatbot()  # Ensure chatbot is running before attempting to write to it
     if chatbot_process and chatbot_process.poll() is None:
         try:
             chatbot_process.stdin.write(data.encode('utf-8') + b'\n')
             chatbot_process.stdin.flush()
+            print("Data sent to chatbot:", data)  # Debug print
             response = chatbot_process.stdout.readline().decode('utf-8').strip()
+            print("Raw response from chatbot:", response)  # Debug print
             emit('bot_response', response)
-            print("Response sent to the client: " + response)
+            if not response:
+                print("No response received, attempting to read more...")
         except Exception as e:
             emit('bot_response', f'Error communicating with chatbot: {e}')
             print(f"Error communicating with chatbot: {e}")
     else:
-        emit('bot_response', 'Chatbot is not ready. Please wait.')
-        print("Chatbot is not ready. Please wait.")
+        print("Chatbot is not running, starting now.")
+        start_chatbot()  # Start chatbot if not running
 
 
 def check_inactivity():

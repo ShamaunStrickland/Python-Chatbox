@@ -90,6 +90,7 @@ def handle_message(data):
             if response:
                 emit('bot_response', response)
                 print("Response sent to the client.")
+                print("Chatbot response:", response)  # Display chatbot response in the server terminal
             else:
                 print("No response received or empty response.")
         except Exception as e:

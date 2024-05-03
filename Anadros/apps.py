@@ -96,9 +96,9 @@ def handle_message(data):
             emit('bot_response', f'Error communicating with chatbot: {e}')
             print(f"Error communicating with chatbot: {e}")
     else:
-        print("Chatbot is not running, starting now.")
-        start_chatbot()
-        emit('bot_response', 'Chatbot is starting, please wait.')
+        print("Chatbox is not running, starting now.")
+        start_chatbox()  # Correct function name
+        emit('bot_response', 'Chatbox is starting, please wait.')
 
 
 def check_inactivity():
@@ -112,7 +112,7 @@ def check_inactivity():
 
 
 if __name__ == '__main__':
-    start_chatbox()  # Start chatbox at the launch of the application
+    start_chatbox()  # Use the correct function name here
     inactivity_checker = threading.Thread(target=check_inactivity)
     inactivity_checker.start()
     socketio.run(app, host='0.0.0.0', port=8000)

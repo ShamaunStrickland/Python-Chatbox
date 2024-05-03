@@ -78,7 +78,7 @@ def handle_message(data):
             chatbot_process.stdin.flush()
             response = chatbot_process.stdout.readline().decode('utf-8').strip()
             emit('bot_response', response)
-            print("Response sent to the client.")
+            print("Response sent to the client: " + response)
         except Exception as e:
             emit('bot_response', f'Error communicating with chatbot: {e}')
             print(f"Error communicating with chatbot: {e}")

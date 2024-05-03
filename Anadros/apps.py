@@ -24,8 +24,10 @@ def start_chatbox():
         chatbot_process = subprocess.Popen(['python3', chatbox_script_path], stdin=subprocess.PIPE,
                                            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         print("Chatbox process started successfully.")
+        return True
     except Exception as e:
         print(f"Error starting chatbox process: {e}")
+        return False
 
 
 def get_location(ip_address):
@@ -111,10 +113,19 @@ def check_inactivity():
 
 
 if __name__ == '__main__':
-    start_chatbox()  # Start the chatbox immediately
-    # Send a dummy message to the chatbox for testing
-    dummy_message = "Hi, this is a test message from the Flask app."
-    handle_message(dummy_message)
-    inactivity_checker = threading.Thread(target=check_inactivity)
-    inactivity_checker.start()
-    socketio.run(app, host='0.0.0.0', port=8000)
+    if start_chatbox():
+        print("Chatbox is running.")
+    else:
+        print("Failed to start the chatbox process.")
+
+    # Send a dummy message "Hello" to the chatbot for testing
+    if chatbot_process and chatbot_process.poll() is None:
+        try:
+            print("Sending test message to chatbot: Hello")
+            chatbot_process.stdin.write(b"Hello\n")
+            chatbot_process.stdin.flush()
+            print("Test message sent successfully.")
+        except Exception as e:
+            print(f"Error sending test message to chatbot: {e}")
+    else:
+        print("Chatbox is not running.")

@@ -20,13 +20,12 @@ def start_chatbox():
     global chatbot_process
     dir_path = os.path.dirname(os.path.realpath(__file__))
     chatbox_script_path = os.path.join(dir_path, 'chatbox.py')
-    if chatbot_process is None or chatbot_process.poll() is not None:
-        try:
-            chatbot_process = subprocess.Popen(['python3', chatbox_script_path], stdin=subprocess.PIPE,
-                                               stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            print("Chatbox process started successfully.")
-        except Exception as e:
-            print(f"Error starting chatbox process: {e}")
+    try:
+        chatbot_process = subprocess.Popen(['python3', chatbox_script_path], stdin=subprocess.PIPE,
+                                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        print("Chatbox process started successfully.")
+    except Exception as e:
+        print(f"Error starting chatbox process: {e}")
 
 
 def get_location(ip_address):
@@ -90,7 +89,6 @@ def handle_message(data):
             if response:
                 emit('bot_response', response)
                 print("Response sent to the client.")
-                print("Chatbot response:", response)  # Display chatbot response in the server terminal
             else:
                 print("No response received or empty response.")
         except Exception as e:
@@ -98,7 +96,7 @@ def handle_message(data):
             print(f"Error communicating with chatbot: {e}")
     else:
         print("Chatbox is not running, starting now.")
-        start_chatbox()  # Correct function name
+        start_chatbox()  # Start the chatbox immediately
         emit('bot_response', 'Chatbox is starting, please wait.')
 
 
@@ -113,7 +111,10 @@ def check_inactivity():
 
 
 if __name__ == '__main__':
-    start_chatbox()  # Use the correct function name here
+    start_chatbox()  # Start the chatbox immediately
+    # Send a dummy message to the chatbox for testing
+    dummy_message = "Hi, this is a test message from the Flask app."
+    handle_message(dummy_message)
     inactivity_checker = threading.Thread(target=check_inactivity)
     inactivity_checker.start()
     socketio.run(app, host='0.0.0.0', port=8000)

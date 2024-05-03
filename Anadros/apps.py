@@ -8,6 +8,9 @@ import os
 import threading
 import select
 
+# Set environment variable TF_USE_LEGACY_KERAS
+os.environ["TF_USE_LEGACY_KERAS"] = "True"
+
 app = Flask(__name__, template_folder='AnadrosSite', static_folder='static')
 socketio = SocketIO(app)
 

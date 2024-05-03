@@ -18,18 +18,16 @@ last_activity_time = time.time()
 
 def start_chatbox():
     global chatbot_process
-    if chatbot_process is None or chatbot_process.poll() is not None:
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        chatbox_script_path = os.path.join(dir_path, 'chatbox.py')
-        try:
-            chatbot_process = subprocess.Popen(['python3', chatbox_script_path], stdin=subprocess.PIPE,
-                                               stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            print("Chatbox process started successfully.")
-            return True
-        except Exception as e:
-            print(f"Error starting chatbox process: {e}")
-            return False
-    return True  # Chatbox is already running
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    chatbox_script_path = os.path.join(dir_path, 'chatbox.py')
+    try:
+        chatbot_process = subprocess.Popen(['python3', chatbox_script_path], stdin=subprocess.PIPE,
+                                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        print("Chatbox process started successfully.")
+        return True
+    except Exception as e:
+        print(f"Error starting chatbox process: {e}")
+        return False
 
 
 def get_location(ip_address):

@@ -11,9 +11,9 @@ import mysql.connector
 
 # Database configuration
 db_config = {
-    'host': 'anadros-user-training-data-do-user-15796887-0.c.db.ondigitalocean.com',
+    'host': 'db-nadrd-01-do-user-15796887-0.f.db.ondigitalocean.com',
     'user': 'doadmin',
-    'password': 'AVNS_eF16Y6-AumI0bR1dJvV',
+    'password': 'AVNS_xUEYPj9LdMHqRGNwHg5',
     'database': 'defaultdb',
     'port': 25060
 }

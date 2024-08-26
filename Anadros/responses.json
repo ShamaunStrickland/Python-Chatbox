@@ -1,12 +1,88 @@
 {
   "responses": {
-    "greeting": {
-      "hello": "Hi there! How can I assist you today?",
-      "hi": "Hello! What can I do for you?"
+    "greetings": {
+      "patterns": [
+        "hello",
+        "hi",
+        "hey",
+        "howdy",
+        "good morning",
+        "good afternoon"
+      ],
+      "responses": [
+        "Hi there! How can I assist you today?",
+        "Hello! What can I do for you?",
+        "Hey! How can I help?",
+        "Howdy! What brings you here?",
+        "Good morning! How may I assist you?",
+        "Good afternoon! How can I help?"
+      ]
     },
-    "farewell": {
-      "bye": "Goodbye! Have a great day!",
-      "see you later": "Until next time!"
+    "farewells": {
+      "patterns": [
+        "bye",
+        "see you later",
+        "goodbye",
+        "take care",
+        "farewell",
+        "see you soon"
+      ],
+      "responses": [
+        "Goodbye! Have a great day!",
+        "Until next time!",
+        "See you later! Take care.",
+        "Farewell! Have a wonderful day.",
+        "Take care! See you soon.",
+        "See you later! Farewell."
+      ]
+    },
+    "thanks": {
+      "patterns": [
+        "thank you",
+        "thanks",
+        "much appreciated",
+        "thank you very much",
+        "thanks a lot"
+      ],
+      "responses": [
+        "You're welcome!",
+        "Glad I could help!",
+        "No problem, happy to assist!",
+        "You're welcome! Anytime!",
+        "No worries! Always here to help!"
+      ]
+    },
+    "help": {
+      "patterns": [
+        "help",
+        "need assistance",
+        "can you help",
+        "help me please",
+        "I need help"
+      ],
+      "responses": [
+        "Sure, I'm here to assist you!",
+        "What do you need help with?",
+        "Of course, how can I assist you?",
+        "Sure thing! Let me know what you need.",
+        "Absolutely! How can I help you today?"
+      ]
+    },
+    "queries": {
+      "patterns": [
+        "query",
+        "database query",
+        "SQL query",
+        "information query",
+        "data request"
+      ],
+      "responses": [
+        "Sure, I can help with database queries. What do you need?",
+        "Certainly! What information are you looking for?",
+        "Of course! Feel free to ask any database-related questions.",
+        "Sure thing! I'm ready to assist with your queries.",
+        "Absolutely! Let me know what data you need from the database."
+      ]
     }
   }
 }

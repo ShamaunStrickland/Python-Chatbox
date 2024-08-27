@@ -8,6 +8,7 @@ Machine Learning Model: The chatbot uses a neural network model built with Tenso
 Database Integration: Intents and responses are stored in a MySQL database, enabling easy updates and management without altering the core code.
 Natural Language Processing: The chatbot employs the Natural Language Toolkit (NLTK) for processing and understanding user inputs.
 Customizable: Users can easily add or modify intents and responses by updating the database, allowing for continuous improvement without retraining the model from scratch.
+
 How It Works
 
 1. Database Setup and Data Retrieval

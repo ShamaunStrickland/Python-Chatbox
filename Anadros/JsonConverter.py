@@ -1,13 +1,16 @@
 import json
 import pymysql.cursors
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # Database configuration
 db_config = {
-    'host': 'db-nadrd-01-do-user-15796887-0.f.db.ondigitalocean.com',
-    'user': 'doadmin',
-    'password': 'AVNS_xUEYPj9LdMHqRGNwHg5',
-    'database': 'defaultdb',
-    'port': 25060,
+    'host': os.getenv('DB_HOST'),
+    'user': os.getenv('DB_USER'),
+    'password': os.getenv('DB_PASSWORD'),
+    'database': os.getenv('DB_DATABASE'),
+    'port': os.getenv('DB_PORT'),
     'cursorclass': pymysql.cursors.DictCursor
 }
 

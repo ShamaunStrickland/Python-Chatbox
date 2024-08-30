@@ -1,15 +1,6 @@
 import json
 import pymysql.cursors
-
-# Database configuration
-db_config = {
-    'host': 'anadros-user-training-data-do-user-15796887-0.c.db.ondigitalocean.com',
-    'user': 'doadmin',
-    'password': 'AVNS_eF16Y6-AumI0bR1dJvV',
-    'database': 'defaultdb',
-    'port': 25060,
-    'cursorclass': pymysql.cursors.DictCursor
-}
+from db_config import db_config
 
 # Read responses from responses.json
 with open('responses.json', 'r') as file:

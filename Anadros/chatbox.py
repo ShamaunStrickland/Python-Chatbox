@@ -14,10 +14,9 @@ import re  # Regular expressions for pattern matching in strings
 import mysql.connector  # Used for connecting to and interacting with a MySQL database
 from db_config import db_config
 
-
 # Connect to the database using the configuration provided.
 conn = mysql.connector.connect(**db_config)
-cursor = conn.cursor()  # Cursor object to interact with the database
+cursor = conn.cursor(dictionary=True)  # Cursor object to interact with the database
 
 # Suppress TensorFlow warnings
 # The environment variable 'TF_CPP_MIN_LOG_LEVEL' is set to '3' to hide all but the most severe TensorFlow warnings.

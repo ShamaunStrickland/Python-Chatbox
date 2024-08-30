@@ -8,16 +8,8 @@ from tensorflow.keras.models import Sequential  # Used to create a sequential mo
 from tensorflow.keras.layers import Dense, Activation, Dropout  # Layers for building the neural network model
 from tensorflow.keras.optimizers.legacy import SGD as legacy_SGD  # An older version of the SGD optimizer
 import mysql.connector  # Used to connect to and interact with a MySQL database
+from db_config import db_config
 
-# Database configuration
-# This dictionary holds the details required to connect to the MySQL database.
-db_config = {
-    'host': 'db-nadrd-01-do-user-15796887-0.f.db.ondigitalocean.com',
-    'user': 'doadmin',
-    'password': 'AVNS_xUEYPj9LdMHqRGNwHg5',
-    'database': 'defaultdb',
-    'port': 25060
-}
 
 # Connect to the database using the configuration provided.
 conn = mysql.connector.connect(**db_config)

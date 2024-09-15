@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: sgd
+Version: 0.0.1
+Summary: Custom ml framework
+Project-URL: Homepage, https://github.com/mpearce25/ml
+Project-URL: Bug Tracker, https://github.com/mpearce25/ml/issues
+Author: Matt
+License-File: LICENSE
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+
+# ml

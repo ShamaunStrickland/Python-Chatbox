@@ -1,0 +1,12 @@
+artifact_path: nlp-rt
+flavors:
+  python_function:
+    data: sparkml
+    env: conda.yaml
+    loader_module: mlflow.spark
+    python_version: 3.7.3
+  spark:
+    model_data: sparkml
+    pyspark_version: 2.4.6.dev0
+run_id: 0c4690547e0f49e28d6c6aa7023f68c3
+utc_time_created: '2020-05-28 12:45:20.223441'

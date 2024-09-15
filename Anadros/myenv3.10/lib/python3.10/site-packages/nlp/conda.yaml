@@ -1,0 +1,11 @@
+channels:
+- defaults
+dependencies:
+- python=3.7.3
+- pyspark=2.4.5
+- pip
+- pip:
+  - mlflow
+  - nltkTransformer
+  - nltk
+name: mlflow-env

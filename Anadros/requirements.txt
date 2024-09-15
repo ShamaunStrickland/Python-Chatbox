@@ -96,4 +96,3 @@ wrapt==1.14.1
 wsproto==1.2.0
 zipp==3.17.0
 python-dotenv==1.0.1
-wheel @ file:///opt/homebrew/Cellar/python%403.12/3.12.5/libexec/wheel-0.44.0-py3-none-any.whl#sha256=8d8a590e50bda8422000110e90bc730ebfcd8363d2de80793ac819b7f252e97d

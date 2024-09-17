@@ -1,3 +1,5 @@
+import eventlet
+eventlet.monkey_patch()
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit
 import subprocess
@@ -5,14 +7,27 @@ import json
 import requests
 import time
 import os
-import threading
 import select
+import redis
+from flask_session import Session
 
 # Set environment variable TF_USE_LEGACY_KERAS
 os.environ["TF_USE_LEGACY_KERAS"] = "True"
 
 app = Flask(__name__, template_folder='AnadrosSite', static_folder='static')
-socketio = SocketIO(app)
+
+# Set up Redis for Flask-Session and SocketIO message queue
+app.config['SESSION_TYPE'] = 'redis'
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_USE_SIGNER'] = True
+app.config['SESSION_KEY_PREFIX'] = 'myapp_'
+app.config['SESSION_REDIS'] = redis.from_url('redis://localhost:6379')
+
+# Initialize session management
+Session(app)
+
+# Initialize Flask-SocketIO with Redis message queue
+socketio = SocketIO(app, message_queue='redis://127.0.0.1:6379', async_mode='eventlet')
 
 # Global variable to store the chatbot process
 chatbot_process = None
@@ -135,4 +150,4 @@ if __name__ == '__main__':
         print("Chatbox is not running.")
 
     # Run the Flask app
-    socketio.run(app, host='0.0.0.0', port=8000)
+    socketio.run(app, host='0.0.0.0', port=8000, debug=True)

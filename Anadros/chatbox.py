@@ -4,9 +4,10 @@ import pickle  # Used for serializing and deserializing Python objects
 import numpy as np  # Used for numerical operations, especially with arrays
 import nltk  # Natural Language Toolkit for text processing tasks
 from nltk.stem import WordNetLemmatizer  # Used to reduce words to their base forms (lemmas)
-from tensorflow.keras.models import Sequential, load_model  # Keras for building and loading neural networks
-from tensorflow.keras.layers import Dense, Activation, Dropout  # Layers for the neural network model
-from tensorflow.keras.optimizers.legacy import SGD as legacy_SGD  # An older version of the SGD optimizer (Mac OS)
+from tensorflow import keras
+from keras.models import Sequential, load_model
+from keras.layers import Dense, Activation, Dropout  # Layers for the neural network model
+from keras.optimizers import SGD as legacy_SGD  # SGD optimizer, not part of the legacy module anymore
 from TerminalInterface import TerminalInterface  # Assuming a custom module for handling terminal inputs/outputs
 import os  # Used for interacting with the operating system (e.g., clearing terminal)
 import subprocess  # Used for running external processes, like running a Python script

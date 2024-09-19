@@ -15,6 +15,7 @@ import os
 import select
 import redis
 from flask_session import Session
+
 # Set up logging to write to stdout and stderr
 logging.basicConfig(level=logging.DEBUG)
 sys.stdout = sys.stderr  # Redirect stdout to stderr for consistent logging
@@ -53,6 +54,10 @@ def start_chatbox():
         chatbot_process = subprocess.Popen(['python3', chatbox_script_path], stdin=subprocess.PIPE,
                                            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         print("Chatbox process started successfully.")
+        # Capture any error messages from the process
+        error_output = chatbot_process.stderr.read().decode('utf-8')
+        if error_output:
+            print(f"Error from chatbox process: {error_output}")
         return True
     except Exception as e:
         print(f"Error starting chatbox process: {e}")

@@ -1,8 +1,10 @@
 import eventlet
+
 eventlet.monkey_patch()
 
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit
+from flask_cors import CORS
 import subprocess
 import json
 import requests
@@ -16,6 +18,9 @@ from flask_session import Session
 os.environ["TF_USE_LEGACY_KERAS"] = "True"
 
 app = Flask(__name__, template_folder='AnadrosSite', static_folder='static')
+
+# Enable CORS
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Set up Redis for Flask-Session and SocketIO message queue
 app.config['SESSION_TYPE'] = 'redis'

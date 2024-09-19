@@ -1,5 +1,6 @@
 import eventlet
 eventlet.monkey_patch()
+
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit
 import subprocess
@@ -150,4 +151,4 @@ if __name__ == '__main__':
         print("Chatbox is not running.")
 
     # Run the Flask app
-    socketio.run(app, host='0.0.0.0', port=8000, debug=True)
+    socketio.run(app, host='0.0.0.0', port=8765, debug=True)

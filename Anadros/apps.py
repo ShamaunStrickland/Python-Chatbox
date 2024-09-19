@@ -5,6 +5,8 @@ eventlet.monkey_patch()
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit
 from flask_cors import CORS
+import logging
+import sys
 import subprocess
 import json
 import requests
@@ -13,6 +15,9 @@ import os
 import select
 import redis
 from flask_session import Session
+# Set up logging to write to stdout and stderr
+logging.basicConfig(level=logging.DEBUG)
+sys.stdout = sys.stderr  # Redirect stdout to stderr for consistent logging
 
 # Set environment variable TF_USE_LEGACY_KERAS
 os.environ["TF_USE_LEGACY_KERAS"] = "True"

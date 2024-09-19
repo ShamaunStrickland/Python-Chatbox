@@ -1,0 +1,1159 @@
+[2024-09-19 22:34:50 +0000] [60220] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['127.0.0.1:8765']
+  backlog: 2048
+  workers: 3
+  worker_class: eventlet
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/nadrd/MyProjects/Python-Chatbox/Anadros
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 33
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1', '::1']
+  accesslog: /home/nadrd/MyProjects/Python-Chatbox/Anadros/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/nadrd/MyProjects/Python-Chatbox/Anadros/error.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7155d12d9d80>
+  on_reload: <function OnReload.on_reload at 0x7155d12d9ea0>
+  when_ready: <function WhenReady.when_ready at 0x7155d12d9fc0>
+  pre_fork: <function Prefork.pre_fork at 0x7155d12da0e0>
+  post_fork: <function Postfork.post_fork at 0x7155d12da200>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7155d12da320>
+  worker_int: <function WorkerInt.worker_int at 0x7155d12da440>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7155d12da560>
+  pre_exec: <function PreExec.pre_exec at 0x7155d12da680>
+  pre_request: <function PreRequest.pre_request at 0x7155d12da7a0>
+  post_request: <function PostRequest.post_request at 0x7155d12da830>
+  child_exit: <function ChildExit.child_exit at 0x7155d12da950>
+  worker_exit: <function WorkerExit.worker_exit at 0x7155d12daa70>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7155d12dab90>
+  on_exit: <function OnExit.on_exit at 0x7155d12dacb0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7155d12dadd0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1', '::1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  permit_obsolete_folding: False
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  forwarder_headers: ['SCRIPT_NAME', 'PATH_INFO']
+  header_map: drop
+[2024-09-19 22:34:50 +0000] [60220] [INFO] Starting gunicorn 23.0.0
+[2024-09-19 22:34:50 +0000] [60220] [DEBUG] Arbiter booted
+[2024-09-19 22:34:50 +0000] [60220] [INFO] Listening at: http://127.0.0.1:8765 (60220)
+[2024-09-19 22:34:50 +0000] [60220] [INFO] Using worker: eventlet
+[2024-09-19 22:34:50 +0000] [60221] [INFO] Booting worker with pid: 60221
+[2024-09-19 22:34:50 +0000] [60222] [INFO] Booting worker with pid: 60222
+[2024-09-19 22:34:50 +0000] [60220] [DEBUG] 3 workers
+[2024-09-19 22:34:50 +0000] [60223] [INFO] Booting worker with pid: 60223
+[2024-09-19 22:34:51 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:34:51 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:34:51 +0000] [60221] [DEBUG] POST /socket.io/
+[2024-09-19 22:34:51 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:34:51 +0000] [60222] [DEBUG] GET /socket.io/
+[2024-09-19 22:34:51 +0000] [60222] [DEBUG] Closing connection. 
+[2024-09-19 22:34:51 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:34:51 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:34:51 +0000] [60221] [DEBUG] POST /socket.io/
+[2024-09-19 22:34:51 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:34:52 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:34:52 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:34:52 +0000] [60221] [DEBUG] POST /socket.io/
+[2024-09-19 22:34:52 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:34:52 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:34:52 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:34:52 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:34:52 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:34:53 +0000] [60221] [DEBUG] Closing connection. 
+server=anadros.com//socket.io/ client=127.0.0.1:60388 socket shutdown error: [Errno 9] Bad file descriptor[2024-09-19 22:34:56 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:34:56 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:34:56 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:34:56 +0000] [60223] [DEBUG] POST /socket.io/
+[2024-09-19 22:34:56 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:34:56 +0000] [60223] [DEBUG] GET /socket.io/
+[2024-09-19 22:34:56 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:34:56 +0000] [60223] [DEBUG] POST /socket.io/
+[2024-09-19 22:34:56 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:34:57 +0000] [60222] [DEBUG] GET /socket.io/
+[2024-09-19 22:34:57 +0000] [60222] [DEBUG] Closing connection. 
+[2024-09-19 22:34:57 +0000] [60222] [DEBUG] POST /socket.io/
+[2024-09-19 22:34:57 +0000] [60222] [DEBUG] Closing connection. 
+[2024-09-19 22:34:57 +0000] [60223] [DEBUG] GET /socket.io/
+[2024-09-19 22:34:57 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:34:57 +0000] [60222] [DEBUG] POST /socket.io/
+[2024-09-19 22:34:57 +0000] [60222] [DEBUG] Closing connection. 
+[2024-09-19 22:34:58 +0000] [60222] [DEBUG] GET /socket.io/
+[2024-09-19 22:34:58 +0000] [60222] [DEBUG] Closing connection. 
+[2024-09-19 22:34:58 +0000] [60222] [DEBUG] GET /socket.io/
+[2024-09-19 22:34:58 +0000] [60223] [DEBUG] POST /socket.io/
+[2024-09-19 22:34:58 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:34:58 +0000] [60223] [DEBUG] POST /socket.io/
+[2024-09-19 22:34:58 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:34:59 +0000] [60222] [DEBUG] GET /socket.io/
+[2024-09-19 22:34:59 +0000] [60222] [DEBUG] Closing connection. 
+[2024-09-19 22:34:59 +0000] [60222] [DEBUG] POST /socket.io/
+[2024-09-19 22:34:59 +0000] [60222] [DEBUG] Closing connection. 
+[2024-09-19 22:34:59 +0000] [60223] [DEBUG] GET /socket.io/
+[2024-09-19 22:34:59 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:34:59 +0000] [60223] [DEBUG] POST /socket.io/
+[2024-09-19 22:34:59 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:35:01 +0000] [60222] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:01 +0000] [60222] [DEBUG] Closing connection. 
+[2024-09-19 22:35:01 +0000] [60223] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:01 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:35:01 +0000] [60223] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:01 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:35:01 +0000] [60221] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:01 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:02 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:02 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:02 +0000] [60223] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:02 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:35:02 +0000] [60223] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:02 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:35:02 +0000] [60223] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:02 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:35:02 +0000] [60223] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:02 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:35:02 +0000] [60223] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:02 +0000] [60222] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:02 +0000] [60222] [DEBUG] Closing connection. 
+[2024-09-19 22:35:02 +0000] [60221] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:02 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:04 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:04 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:04 +0000] [60221] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:04 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:04 +0000] [60223] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:04 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:35:04 +0000] [60223] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:04 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:35:04 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:04 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:04 +0000] [60223] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:04 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:35:04 +0000] [60223] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:04 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:35:04 +0000] [60223] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:04 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:35:05 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:05 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:05 +0000] [60223] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:05 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:35:05 +0000] [60223] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:05 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:35:05 +0000] [60221] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:05 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:06 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:06 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:06 +0000] [60223] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:06 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:06 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:35:06 +0000] [60221] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:06 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:06 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:07 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:07 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:07 +0000] [60223] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:07 +0000] [60221] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:07 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:35:07 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:07 +0000] [60221] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:07 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:08 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:08 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:08 +0000] [60221] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:08 +0000] [60223] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:08 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:35:08 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:08 +0000] [60222] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:08 +0000] [60222] [DEBUG] Closing connection. 
+[2024-09-19 22:35:09 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:09 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:09 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:09 +0000] [60221] [DEBUG] POST /socket.io/
+[2024-09-19 22:35:09 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:09 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:09 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:09 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:09 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:10 +0000] [60221] [DEBUG] GET /socket.io/
+[2024-09-19 22:35:10 +0000] [60221] [DEBUG] Closing connection. 
+[2024-09-19 22:35:23 +0000] [60222] [DEBUG] Closing connection. 
+[2024-09-19 22:35:27 +0000] [60223] [DEBUG] Closing connection. 
+[2024-09-19 22:37:45 +0000] [60220] [INFO] Handling signal: term
+[2024-09-19 22:37:45 +0000] [60222] [INFO] Worker exiting (pid: 60222)
+[2024-09-19 22:37:45 +0000] [60223] [INFO] Worker exiting (pid: 60223)
+[2024-09-19 22:38:15 +0000] [60221] [INFO] Worker exiting (pid: 60221)
+[2024-09-19 22:38:15 +0000] [60220] [INFO] Shutting down: Master
+[2024-09-19 22:40:51 +0000] [60452] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['127.0.0.1:8765']
+  backlog: 2048
+  workers: 3
+  worker_class: eventlet
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/nadrd/MyProjects/Python-Chatbox/Anadros
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 33
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1', '::1']
+  accesslog: /home/nadrd/MyProjects/Python-Chatbox/Anadros/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/nadrd/MyProjects/Python-Chatbox/Anadros/error.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x74ed9bbd9d80>
+  on_reload: <function OnReload.on_reload at 0x74ed9bbd9ea0>
+  when_ready: <function WhenReady.when_ready at 0x74ed9bbd9fc0>
+  pre_fork: <function Prefork.pre_fork at 0x74ed9bbda0e0>
+  post_fork: <function Postfork.post_fork at 0x74ed9bbda200>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x74ed9bbda320>
+  worker_int: <function WorkerInt.worker_int at 0x74ed9bbda440>
+  worker_abort: <function WorkerAbort.worker_abort at 0x74ed9bbda560>
+  pre_exec: <function PreExec.pre_exec at 0x74ed9bbda680>
+  pre_request: <function PreRequest.pre_request at 0x74ed9bbda7a0>
+  post_request: <function PostRequest.post_request at 0x74ed9bbda830>
+  child_exit: <function ChildExit.child_exit at 0x74ed9bbda950>
+  worker_exit: <function WorkerExit.worker_exit at 0x74ed9bbdaa70>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x74ed9bbdab90>
+  on_exit: <function OnExit.on_exit at 0x74ed9bbdacb0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x74ed9bbdadd0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1', '::1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  permit_obsolete_folding: False
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  forwarder_headers: ['SCRIPT_NAME', 'PATH_INFO']
+  header_map: drop
+[2024-09-19 22:40:51 +0000] [60452] [INFO] Starting gunicorn 23.0.0
+[2024-09-19 22:40:51 +0000] [60452] [DEBUG] Arbiter booted
+[2024-09-19 22:40:51 +0000] [60452] [INFO] Listening at: http://127.0.0.1:8765 (60452)
+[2024-09-19 22:40:51 +0000] [60452] [INFO] Using worker: eventlet
+[2024-09-19 22:40:51 +0000] [60453] [INFO] Booting worker with pid: 60453
+[2024-09-19 22:40:51 +0000] [60454] [INFO] Booting worker with pid: 60454
+[2024-09-19 22:40:51 +0000] [60455] [INFO] Booting worker with pid: 60455
+[2024-09-19 22:40:51 +0000] [60452] [DEBUG] 3 workers
+[2024-09-19 22:40:56 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:40:56 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:40:56 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:40:56 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:40:56 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:40:56 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:40:56 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:40:56 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:40:56 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:40:56 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:40:56 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:40:56 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:40:56 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:40:56 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:40:56 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:40:56 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:40:57 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:40:57 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:40:57 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:40:57 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:40:57 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:40:57 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:40:57 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:40:57 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:40:57 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:40:57 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:40:59 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:40:59 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:40:59 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:40:59 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:40:59 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:40:59 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:40:59 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:40:59 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:40:59 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:40:59 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:40:59 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:40:59 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:40:59 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:40:59 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:40:59 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:40:59 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:40:59 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:40:59 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:00 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:00 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:00 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:00 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:00 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:00 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:00 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:00 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:01 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:01 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:01 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:01 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:01 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:01 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:01 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:01 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:01 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:01 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:01 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:01 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:01 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:01 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:01 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:01 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:01 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:01 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:01 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:01 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:02 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:02 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:02 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:02 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:02 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:02 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:02 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:02 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:03 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:03 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:03 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:03 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:03 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:03 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:03 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:03 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:03 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:03 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:03 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:03 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:03 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:03 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:03 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:04 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:04 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:04 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:04 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:04 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:04 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:04 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:04 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:04 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:04 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:04 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:04 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:04 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:04 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:04 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:04 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:05 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:05 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:05 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:05 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:05 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:05 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:05 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:05 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:05 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:05 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:05 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:05 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:05 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:05 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:05 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:05 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:05 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:05 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:06 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:06 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:06 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:06 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:06 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:06 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:06 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:06 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:06 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:06 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:06 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:06 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:06 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:06 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:06 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:06 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:06 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:06 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:06 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:06 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:06 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:06 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:06 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:07 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:07 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:07 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:07 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:07 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:07 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:07 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:07 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:07 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:07 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:07 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:07 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:07 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:07 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:07 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:07 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:07 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:07 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:07 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:07 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:07 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:07 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:07 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:07 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:07 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:07 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:07 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:07 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:08 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:08 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:08 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:08 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:08 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:08 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:08 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:08 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:08 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:08 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:08 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:08 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:08 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:08 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:08 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:08 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:08 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:08 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:08 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:08 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:08 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:08 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:08 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:08 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:10 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:10 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:10 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:10 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:10 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:10 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:10 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:10 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:10 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:10 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:10 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:10 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:10 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:10 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:10 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:10 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:12 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:12 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:12 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:12 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:12 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:12 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:12 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:12 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:13 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:13 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:13 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:13 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:13 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:13 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:13 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:13 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:14 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:14 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:14 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:14 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:14 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:14 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:14 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:17 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:17 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:18 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:18 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:18 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:18 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:18 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:18 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:18 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:21 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:21 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:21 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:21 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:21 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:21 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:21 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:21 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:21 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:21 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:22 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:22 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:22 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:22 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:22 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:22 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:22 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:22 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:22 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:22 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:22 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:22 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:22 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:22 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:22 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:22 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:24 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:24 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:24 +0000] [60454] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:24 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:24 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:24 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:24 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:24 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:24 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:24 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:24 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:24 +0000] [60454] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:24 +0000] [60454] [DEBUG] Closing connection. 
+[2024-09-19 22:41:25 +0000] [60455] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:25 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:25 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:25 +0000] [60452] [INFO] Handling signal: term
+[2024-09-19 22:41:25 +0000] [60455] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:25 +0000] [60455] [DEBUG] Closing connection. 
+[2024-09-19 22:41:25 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:25 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:25 +0000] [60453] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:25 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:25 +0000] [60453] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:25 +0000] [60453] [DEBUG] Closing connection. 
+[2024-09-19 22:41:26 +0000] [60455] [INFO] Worker exiting (pid: 60455)
+[2024-09-19 22:41:28 +0000] [60454] [DEBUG] Ignoring EPIPE
+[2024-09-19 22:41:31 +0000] [60454] [DEBUG] Ignoring EPIPE
+[2024-09-19 22:41:31 +0000] [60454] [INFO] Worker exiting (pid: 60454)
+[2024-09-19 22:41:39 +0000] [60453] [DEBUG] Ignoring EPIPE
+[2024-09-19 22:41:43 +0000] [60453] [DEBUG] Ignoring EPIPE
+[2024-09-19 22:41:43 +0000] [60453] [INFO] Worker exiting (pid: 60453)
+[2024-09-19 22:41:43 +0000] [60452] [INFO] Shutting down: Master
+[2024-09-19 22:41:43 +0000] [60463] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['127.0.0.1:8765']
+  backlog: 2048
+  workers: 3
+  worker_class: eventlet
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/nadrd/MyProjects/Python-Chatbox/Anadros
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 33
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1', '::1']
+  accesslog: /home/nadrd/MyProjects/Python-Chatbox/Anadros/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/nadrd/MyProjects/Python-Chatbox/Anadros/error.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x78b3673d9d80>
+  on_reload: <function OnReload.on_reload at 0x78b3673d9ea0>
+  when_ready: <function WhenReady.when_ready at 0x78b3673d9fc0>
+  pre_fork: <function Prefork.pre_fork at 0x78b3673da0e0>
+  post_fork: <function Postfork.post_fork at 0x78b3673da200>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x78b3673da320>
+  worker_int: <function WorkerInt.worker_int at 0x78b3673da440>
+  worker_abort: <function WorkerAbort.worker_abort at 0x78b3673da560>
+  pre_exec: <function PreExec.pre_exec at 0x78b3673da680>
+  pre_request: <function PreRequest.pre_request at 0x78b3673da7a0>
+  post_request: <function PostRequest.post_request at 0x78b3673da830>
+  child_exit: <function ChildExit.child_exit at 0x78b3673da950>
+  worker_exit: <function WorkerExit.worker_exit at 0x78b3673daa70>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x78b3673dab90>
+  on_exit: <function OnExit.on_exit at 0x78b3673dacb0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x78b3673dadd0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1', '::1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  permit_obsolete_folding: False
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  forwarder_headers: ['SCRIPT_NAME', 'PATH_INFO']
+  header_map: drop
+[2024-09-19 22:41:43 +0000] [60463] [INFO] Starting gunicorn 23.0.0
+[2024-09-19 22:41:43 +0000] [60463] [DEBUG] Arbiter booted
+[2024-09-19 22:41:43 +0000] [60463] [INFO] Listening at: http://127.0.0.1:8765 (60463)
+[2024-09-19 22:41:43 +0000] [60463] [INFO] Using worker: eventlet
+[2024-09-19 22:41:43 +0000] [60466] [INFO] Booting worker with pid: 60466
+[2024-09-19 22:41:44 +0000] [60467] [INFO] Booting worker with pid: 60467
+[2024-09-19 22:41:44 +0000] [60468] [INFO] Booting worker with pid: 60468
+[2024-09-19 22:41:44 +0000] [60463] [DEBUG] 3 workers
+[2024-09-19 22:41:49 +0000] [60467] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:49 +0000] [60467] [DEBUG] Closing connection. 
+[2024-09-19 22:41:49 +0000] [60468] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:49 +0000] [60467] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:49 +0000] [60468] [DEBUG] Closing connection. 
+[2024-09-19 22:41:49 +0000] [60467] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:49 +0000] [60467] [DEBUG] Closing connection. 
+[2024-09-19 22:41:49 +0000] [60467] [DEBUG] Closing connection. 
+[2024-09-19 22:41:50 +0000] [60466] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:50 +0000] [60466] [DEBUG] Closing connection. 
+[2024-09-19 22:41:50 +0000] [60467] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:50 +0000] [60467] [DEBUG] Closing connection. 
+[2024-09-19 22:41:50 +0000] [60466] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:50 +0000] [60468] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:50 +0000] [60468] [DEBUG] Closing connection. 
+[2024-09-19 22:41:51 +0000] [60467] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:51 +0000] [60467] [DEBUG] Closing connection. 
+[2024-09-19 22:41:51 +0000] [60467] [DEBUG] POST /socket.io/
+[2024-09-19 22:41:51 +0000] [60467] [DEBUG] Closing connection. 
+[2024-09-19 22:41:51 +0000] [60467] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:51 +0000] [60467] [DEBUG] Closing connection. 
+[2024-09-19 22:41:51 +0000] [60467] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:53 +0000] [60467] [DEBUG] GET /socket.io/
+[2024-09-19 22:41:53 +0000] [60467] [DEBUG] Closing connection. 
+server=anadros.com//socket.io/ client=127.0.0.1:59828 socket shutdown error: [Errno 9] Bad file descriptor[2024-09-19 22:42:04 +0000] [60467] [DEBUG] Closing connection. 
+[2024-09-19 22:42:04 +0000] [60467] [DEBUG] GET /socket.io/
+[2024-09-19 22:42:04 +0000] [60467] [DEBUG] Closing connection. 
+[2024-09-19 22:42:04 +0000] [60467] [DEBUG] POST /socket.io/
+[2024-09-19 22:42:04 +0000] [60467] [DEBUG] Closing connection. 
+[2024-09-19 22:42:04 +0000] [60467] [DEBUG] GET /socket.io/
+[2024-09-19 22:42:04 +0000] [60467] [DEBUG] Closing connection. 
+[2024-09-19 22:42:04 +0000] [60467] [DEBUG] GET /socket.io/
+[2024-09-19 22:42:06 +0000] [60467] [DEBUG] GET /socket.io/
+[2024-09-19 22:42:07 +0000] [60467] [DEBUG] Closing connection. 
+[2024-09-19 22:42:15 +0000] [60466] [DEBUG] Ignoring EPIPE
+[2024-09-19 22:44:35 +0000] [60463] [INFO] Handling signal: term
+[2024-09-19 22:44:35 +0000] [60466] [INFO] Worker exiting (pid: 60466)
+[2024-09-19 22:44:36 +0000] [60468] [INFO] Worker exiting (pid: 60468)
+[2024-09-19 22:45:05 +0000] [60463] [INFO] Shutting down: Master
+[2024-09-19 22:45:05 +0000] [60512] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['127.0.0.1:8765']
+  backlog: 2048
+  workers: 3
+  worker_class: eventlet
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/nadrd/MyProjects/Python-Chatbox/Anadros
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 33
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1', '::1']
+  accesslog: /home/nadrd/MyProjects/Python-Chatbox/Anadros/access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/nadrd/MyProjects/Python-Chatbox/Anadros/error.log
+  loglevel: debug
+  capture_output: False
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7c88f0571d80>
+  on_reload: <function OnReload.on_reload at 0x7c88f0571ea0>
+  when_ready: <function WhenReady.when_ready at 0x7c88f0571fc0>
+  pre_fork: <function Prefork.pre_fork at 0x7c88f05720e0>
+  post_fork: <function Postfork.post_fork at 0x7c88f0572200>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7c88f0572320>
+  worker_int: <function WorkerInt.worker_int at 0x7c88f0572440>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7c88f0572560>
+  pre_exec: <function PreExec.pre_exec at 0x7c88f0572680>
+  pre_request: <function PreRequest.pre_request at 0x7c88f05727a0>
+  post_request: <function PostRequest.post_request at 0x7c88f0572830>
+  child_exit: <function ChildExit.child_exit at 0x7c88f0572950>
+  worker_exit: <function WorkerExit.worker_exit at 0x7c88f0572a70>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7c88f0572b90>
+  on_exit: <function OnExit.on_exit at 0x7c88f0572cb0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7c88f0572dd0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1', '::1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  permit_obsolete_folding: False
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  forwarder_headers: ['SCRIPT_NAME', 'PATH_INFO']
+  header_map: drop
+[2024-09-19 22:45:05 +0000] [60512] [INFO] Starting gunicorn 23.0.0
+[2024-09-19 22:45:05 +0000] [60512] [DEBUG] Arbiter booted
+[2024-09-19 22:45:05 +0000] [60512] [INFO] Listening at: http://127.0.0.1:8765 (60512)
+[2024-09-19 22:45:05 +0000] [60512] [INFO] Using worker: eventlet
+[2024-09-19 22:45:05 +0000] [60513] [INFO] Booting worker with pid: 60513
+[2024-09-19 22:45:05 +0000] [60514] [INFO] Booting worker with pid: 60514
+[2024-09-19 22:45:05 +0000] [60515] [INFO] Booting worker with pid: 60515
+[2024-09-19 22:45:05 +0000] [60512] [DEBUG] 3 workers
+[2024-09-19 22:45:06 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:06 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:06 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:06 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:06 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:06 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:06 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:06 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:06 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:06 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:06 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:06 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:07 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:07 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:07 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:07 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:07 +0000] [60515] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:07 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:07 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:07 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:09 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:09 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:09 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:09 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:09 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:09 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:09 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:10 +0000] [60515] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:10 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:10 +0000] [60514] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:10 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:10 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:10 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:10 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:10 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:12 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:12 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:12 +0000] [60514] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:12 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:12 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:12 +0000] [60514] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:12 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:13 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:13 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:13 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:13 +0000] [60514] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:13 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:13 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:13 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:13 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:13 +0000] [60514] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:13 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:14 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:14 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:14 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:14 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:14 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:14 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:14 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:14 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:15 +0000] [60515] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:15 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:15 +0000] [60515] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:15 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:15 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:15 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:15 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:16 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:16 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:16 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:16 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:16 +0000] [60515] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:16 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:16 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:16 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:17 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:17 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:17 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:17 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:17 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:17 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:17 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:17 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:18 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:18 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:18 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:18 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:18 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:18 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:18 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:18 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:19 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:19 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:19 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:19 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:19 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:19 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:19 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:20 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:20 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:20 +0000] [60514] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:20 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:20 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:20 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:20 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:20 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:21 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:21 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:21 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:21 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:21 +0000] [60515] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:21 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:21 +0000] [60514] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:21 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:23 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:23 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:23 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:23 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:23 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:23 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:23 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:24 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:24 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:24 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:24 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:24 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:24 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:24 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:24 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:25 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:25 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:25 +0000] [60514] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:25 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:25 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:25 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:25 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:25 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:26 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:26 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:26 +0000] [60514] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:26 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:26 +0000] [60515] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:26 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:26 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:26 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:27 +0000] [60515] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:27 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:27 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:27 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:27 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:27 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:27 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:27 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:28 +0000] [60515] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:28 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:28 +0000] [60514] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:28 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:28 +0000] [60515] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:28 +0000] [60514] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:28 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:28 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:28 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:28 +0000] [60514] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:28 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:28 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:28 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:28 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:28 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:29 +0000] [60515] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:29 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:29 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:29 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:29 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:29 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:29 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:29 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:30 +0000] [60515] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:30 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:30 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:30 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:30 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:31 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:31 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:31 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:32 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:32 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:32 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:32 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:32 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:32 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:32 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:33 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:33 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:34 +0000] [60513] [DEBUG] Ignoring EPIPE
+[2024-09-19 22:45:34 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:34 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:34 +0000] [60514] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:34 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:34 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:34 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:34 +0000] [60514] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:34 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:35 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:35 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:35 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:35 +0000] [60514] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:35 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:35 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:35 +0000] [60514] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:35 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:36 +0000] [60515] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:36 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:36 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:36 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:36 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:36 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:36 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:36 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:37 +0000] [60513] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:37 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:37 +0000] [60513] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:37 +0000] [60515] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:37 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:37 +0000] [60513] [DEBUG] Closing connection. 
+[2024-09-19 22:45:37 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:37 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:37 +0000] [60513] [DEBUG] Ignoring EPIPE
+[2024-09-19 22:45:38 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:38 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:38 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:38 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:38 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:38 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:38 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:39 +0000] [60515] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:39 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:39 +0000] [60515] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:39 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:39 +0000] [60515] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:39 +0000] [60515] [DEBUG] Closing connection. 
+[2024-09-19 22:45:39 +0000] [60515] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:40 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:40 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:40 +0000] [60514] [DEBUG] POST /socket.io/
+[2024-09-19 22:45:40 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:40 +0000] [60515] [DEBUG] Ignoring EPIPE
+[2024-09-19 22:45:40 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:40 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:40 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:44 +0000] [60514] [DEBUG] Ignoring EPIPE
+[2024-09-19 22:45:44 +0000] [60514] [DEBUG] GET /socket.io/
+[2024-09-19 22:45:44 +0000] [60514] [DEBUG] Closing connection. 
+[2024-09-19 22:45:48 +0000] [60514] [DEBUG] Ignoring EPIPE
+[2024-09-19 22:45:53 +0000] [60515] [DEBUG] Ignoring EPIPE
+[2024-09-19 22:45:57 +0000] [60513] [DEBUG] Ignoring EPIPE
+[2024-09-19 22:46:03 +0000] [60514] [DEBUG] Ignoring EPIPE
+[2024-09-19 22:46:04 +0000] [60515] [DEBUG] Ignoring EPIPE
+[2024-09-19 23:01:40 +0000] [60512] [INFO] Handling signal: term
+[2024-09-19 23:01:40 +0000] [60513] [INFO] Worker exiting (pid: 60513)
+[2024-09-19 23:01:40 +0000] [60515] [INFO] Worker exiting (pid: 60515)
+[2024-09-19 23:02:10 +0000] [60512] [INFO] Shutting down: Master

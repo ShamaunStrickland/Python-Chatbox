@@ -61,7 +61,7 @@ def start_chatbox():
     chatbox_script_path = os.path.join(dir_path, 'chatbox.py')
     try:
         chatbot_process = subprocess.Popen(['python3', chatbox_script_path], stdin=subprocess.PIPE,
-                                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                                           stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=0)
         print("Chatbox process started successfully.")
         # Capture any error messages from the process
         error_output = chatbot_process.stderr.read().decode('utf-8')

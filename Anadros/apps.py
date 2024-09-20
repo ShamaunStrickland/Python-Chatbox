@@ -2,6 +2,10 @@ import eventlet
 
 eventlet.monkey_patch()
 
+import eventlet.pools
+
+pool = eventlet.pools.Pool(max_size=10)
+
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit
 from flask_cors import CORS
@@ -44,6 +48,11 @@ socketio = SocketIO(app, message_queue='redis://127.0.0.1:6379', async_mode='eve
 # Global variable to store the chatbot process
 chatbot_process = None
 last_activity_time = time.time()
+
+
+def safe_socket_read(sock):
+    with pool.item() as _:
+        return sock.read()
 
 
 def start_chatbox():

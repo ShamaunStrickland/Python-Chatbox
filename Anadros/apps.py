@@ -1,6 +1,6 @@
 import eventlet
 
-eventlet.monkey_patch()
+eventlet.monkey_patch(all=True)
 
 import eventlet.pools
 

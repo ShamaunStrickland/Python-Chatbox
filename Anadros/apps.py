@@ -19,6 +19,7 @@ import os
 import select
 import redis
 from flask_session import Session
+from datetime import datetime
 
 # Set up logging to write to stdout and stderr
 logging.basicConfig(level=logging.DEBUG)
@@ -74,7 +75,7 @@ def start_chatbox():
 
 
 def get_location(ip_address):
-    url = f'http://ip-api.com/json/{ip_address}?fields=status,message,city,country,lat,lon'
+    url = f'http://ip-api.com/json/{ip_address}?fields=status,message,city,regionName,country,lat,lon'
     try:
         response = requests.get(url)
         if response.status_code == 200:
@@ -82,6 +83,7 @@ def get_location(ip_address):
             if data['status'] == 'success':
                 location = {
                     'city': data['city'],
+                    'region': data['regionName'],  # State or Region
                     'country': data['country'],
                     'latitude': data['lat'],
                     'longitude': data['lon']
@@ -95,9 +97,22 @@ def get_location(ip_address):
 
 def log_request(ip_address, message):
     location = get_location(ip_address)
+    browser_info = request.user_agent.string
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+    log_data = {
+        'IP Address': ip_address,
+        'Location': location,
+        'Message': message,
+        'Browser Info': browser_info,
+        'Date/Time': current_time
+    }
+
     with open('request_logs.txt', 'a') as log_file:
-        log_file.write(f'IP Address: {ip_address}\nLocation: {location}\nMessage: {message}\n\n')
-    print(f'IP Address: {ip_address}, Location: {location}, Message: {message}')
+        log_file.write(f'{json.dumps(log_data)}\n\n')
+
+    print(f"IP Address: {ip_address}, Location: {location}, Message: {message}, "
+          f"Browser Info: {browser_info}, Time: {current_time}")
 
 
 @app.route('/')

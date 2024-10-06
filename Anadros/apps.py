@@ -56,10 +56,6 @@ def start_chatbox():
         chatbot_process = subprocess.Popen(['python3', chatbox_script_path], stdin=subprocess.PIPE,
                                            stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=0)
         print("Chatbox process started successfully.")
-        # Capture any error messages from the process
-        error_output = chatbot_process.stderr.read().decode('utf-8')
-        if error_output:
-            print(f"Error from chatbox process: {error_output}")
         return True
     except Exception as e:
         print(f"Error starting chatbox process: {e}")
@@ -131,13 +127,17 @@ def non_blocking_read(output):
 def handle_message(data):
     ip_address = request.remote_addr
     log_request(ip_address, data)
+
     if chatbot_process and chatbot_process.poll() is None:
         try:
             print("Sending data to chatbot:", data)
             chatbot_process.stdin.write(data.encode('utf-8') + b'\n')
             chatbot_process.stdin.flush()
+
+            # Wait for the response
             response = non_blocking_read(chatbot_process.stdout)
             print("Received response from chatbot:", response)
+
             if response:
                 emit('bot_response', response)
                 print("Response sent to the client.")
@@ -148,8 +148,10 @@ def handle_message(data):
             print(f"Error communicating with chatbot: {e}")
     else:
         print("Chatbox is not running, starting now.")
-        start_chatbox()  # Start the chatbox immediately
-        emit('bot_response', 'Chatbox is starting, please wait.')
+        if start_chatbox():  # Start the chatbox if it's not running
+            emit('bot_response', 'Chatbox is starting, please wait.')
+        else:
+            emit('bot_response', 'Failed to start the chatbox.')
 
 
 def check_inactivity():

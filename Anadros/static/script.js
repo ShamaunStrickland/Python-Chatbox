@@ -1,6 +1,9 @@
 import {io} from "https://cdn.socket.io/4.7.5/socket.io.esm.min.js";
 
-const socket = io("wss://anadros.com:8765", {transports: ['websocket']});
+const socket = io('wss://anadros.com', {
+    transports: ['websocket'],
+    reconnectionAttempts: 5,
+});
 
 socket.on('connect', () => {
     console.log('Successfully connected to the server.');

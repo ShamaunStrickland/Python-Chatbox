@@ -1,10 +1,7 @@
-import eventlet
+from gevent import monkey
 
-eventlet.monkey_patch(all=True)
-
-import eventlet.pools
-
-pool = eventlet.pools.Pool(max_size=10)
+# Patch all to make standard library cooperative
+monkey.patch_all()
 
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit
@@ -44,16 +41,11 @@ app.config['SESSION_REDIS'] = redis.from_url('redis://localhost:6379')
 Session(app)
 
 # Initialize Flask-SocketIO with Redis message queue
-socketio = SocketIO(app, message_queue='redis://127.0.0.1:6379', async_mode='eventlet')
+socketio = SocketIO(app, message_queue='redis://127.0.0.1:6379', async_mode='gevent')  # Changed to gevent
 
 # Global variable to store the chatbot process
 chatbot_process = None
 last_activity_time = time.time()
-
-
-def safe_socket_read(sock):
-    with pool.item() as _:
-        return sock.read()
 
 
 def start_chatbox():
@@ -189,5 +181,5 @@ if __name__ == '__main__':
     else:
         print("Chatbox is not running.")
 
-    # Run the Flask app
+    # Run the Flask app with gevent
     socketio.run(app, host='0.0.0.0', port=8765, debug=True)

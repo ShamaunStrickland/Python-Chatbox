@@ -1,6 +1,6 @@
-import eventlet
+from gevent import monkey
 
-eventlet.monkey_patch(all=True)  # Make sure this is the very first line
+monkey.patch_all()
 
 import random  # Used for random operations, such as choosing a random response
 import json  # Used for handling JSON files

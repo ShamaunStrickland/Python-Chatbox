@@ -1,29 +1,27 @@
 import {io} from "https://cdn.socket.io/4.7.5/socket.io.esm.min.js";
 
-const socket = io('http://anadros.com', {  // Changed 'wss' to 'http'
+const socket = io('http://anadros.com', {
     transports: ['websocket'],
-    reconnectionAttempts: 5,
+    reconnectionAttempts: 10,
 });
 
-// Connection success handler
 socket.on('connect', () => {
     console.log('Successfully connected to the server.');
 });
 
-// Error handling for connection issues
 socket.on('connect_error', (error) => {
     console.error('Connection Error:', error);
+    displayBotResponse('Connection error. Reconnecting...');
 });
 
-// Event listener for 'bot_response' event
+socket.on('disconnect', (reason) => {
+    console.log('Disconnected:', reason);
+    displayBotResponse('Disconnected from server. Reconnecting...');
+});
+
 socket.on('bot_response', (data) => {
     console.log('Received response:', data);
     displayBotResponse(data);
-});
-
-// Handle disconnection
-socket.on('disconnect', (reason) => {
-    console.log('Disconnected:', reason);
 });
 
 function displayBotResponse(response) {

@@ -53,9 +53,26 @@ def start_chatbox():
     dir_path = os.path.dirname(os.path.realpath(__file__))
     chatbox_script_path = os.path.join(dir_path, 'chatbox.py')
     try:
-        chatbot_process = subprocess.Popen(['python3', chatbox_script_path], stdin=subprocess.PIPE,
-                                           stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=0)
+        chatbot_process = subprocess.Popen(
+            ['python3', chatbox_script_path],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            bufsize=1,
+            universal_newlines=True  # Set universal_newlines=True to read as text, not bytes
+        )
         print("Chatbox process started successfully.")
+
+        # Wait for the chatbot to print "READY"
+        while True:
+            output_line = chatbot_process.stdout.readline().strip()
+            if "READY" in output_line:
+                print("Chatbox is ready.")
+                break
+            if chatbot_process.poll() is not None:
+                print("Chatbox process exited before ready.")
+                return False
+
         return True
     except Exception as e:
         print(f"Error starting chatbox process: {e}")
@@ -134,13 +151,12 @@ def handle_message(data):
             chatbot_process.stdin.write(data.encode('utf-8') + b'\n')
             chatbot_process.stdin.flush()
 
-            # Wait for the response
             response = non_blocking_read(chatbot_process.stdout)
             print("Received response from chatbot:", response)
 
             if response:
                 emit('bot_response', response)
-                print("Response sent to the client.")
+                print(f"Emitting bot response: {response}")
             else:
                 print("No response received or empty response.")
         except Exception as e:

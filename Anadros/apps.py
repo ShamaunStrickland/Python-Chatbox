@@ -148,9 +148,10 @@ def handle_message(data):
     if chatbot_process and chatbot_process.poll() is None:
         try:
             print("Sending data to chatbot:", data)
-            chatbot_process.stdin.write(data.encode('utf-8') + b'\n')
+            chatbot_process.stdin.write(data + '\n')  # Remove .encode('utf-8') and use plain string
             chatbot_process.stdin.flush()
 
+            # Wait for the response
             response = non_blocking_read(chatbot_process.stdout)
             print("Received response from chatbot:", response)
 

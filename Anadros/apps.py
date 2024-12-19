@@ -13,7 +13,8 @@ import json
 import requests
 import time
 import os
-import select
+import threading
+import queue
 import redis
 from flask_session import Session
 from datetime import datetime
@@ -41,10 +42,11 @@ app.config['SESSION_REDIS'] = redis.from_url('redis://localhost:6379')
 Session(app)
 
 # Initialize Flask-SocketIO with Redis message queue
-socketio = SocketIO(app, message_queue='redis://127.0.0.1:6379', async_mode='gevent')  # Changed to gevent
+socketio = SocketIO(app, message_queue='redis://127.0.0.1:6379', async_mode='gevent')
 
-# Global variable to store the chatbot process
+# Global variable to store the chatbot process and queue
 chatbot_process = None
+stdout_queue = queue.Queue()
 last_activity_time = time.time()
 
 
@@ -59,24 +61,36 @@ def start_chatbox():
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             bufsize=1,
-            universal_newlines=True  # Set universal_newlines=True to read as text, not bytes
+            text=True  # Use text=True to read stdout as text
         )
         print("Chatbox process started successfully.")
 
-        # Wait for the chatbot to print "READY"
-        while True:
-            output_line = chatbot_process.stdout.readline().strip()
-            if "READY" in output_line:
-                print("Chatbox is ready.")
-                break
-            if chatbot_process.poll() is not None:
-                print("Chatbox process exited before ready.")
-                return False
+        # Create a thread to read chatbot's stdout and put lines into the queue
+        threading.Thread(target=read_stdout, args=(chatbot_process.stdout,), daemon=True).start()
 
         return True
     except Exception as e:
         print(f"Error starting chatbox process: {e}")
         return False
+
+
+def read_stdout(stdout):
+    """Read stdout line by line and put it in a queue."""
+    try:
+        for line in iter(stdout.readline, ''):  # Read line by line
+            print(f"Line from chatbot: {line.strip()}")
+            stdout_queue.put(line.strip())
+    except Exception as e:
+        print(f"Error reading stdout: {e}")
+
+
+def non_blocking_read():
+    """Return one line from the queue if available, else return None."""
+    try:
+        return stdout_queue.get(timeout=5)  # Wait for 5 seconds for response
+    except queue.Empty:
+        print("No response from chatbot within timeout.")
+        return None
 
 
 def get_location(ip_address):
@@ -132,14 +146,6 @@ def on_connect():
     print("Client connected.")
 
 
-def non_blocking_read(output):
-    ready, _, _ = select.select([output], [], [], 5.0)  # 5 seconds timeout
-    if ready:
-        return output.read().decode('utf-8').strip()
-    else:
-        return "No response in time."
-
-
 @socketio.on('chat_message')
 def handle_message(data):
     ip_address = request.remote_addr
@@ -148,57 +154,31 @@ def handle_message(data):
     if chatbot_process and chatbot_process.poll() is None:
         try:
             print("Sending data to chatbot:", data)
-            chatbot_process.stdin.write(data + '\n')  # Remove .encode('utf-8') and use plain string
+            chatbot_process.stdin.write(data + '\n')  # Send plain string, no encoding
             chatbot_process.stdin.flush()
 
-            # Wait for the response
-            response = non_blocking_read(chatbot_process.stdout)
-            print("Received response from chatbot:", response)
+            response = non_blocking_read()
+            print(f"Received response from chatbot: {response}")
 
             if response:
                 emit('bot_response', response)
-                print(f"Emitting bot response: {response}")
             else:
-                print("No response received or empty response.")
+                emit('bot_response', 'No response from chatbot.')
         except Exception as e:
             emit('bot_response', f'Error communicating with chatbot: {e}')
             print(f"Error communicating with chatbot: {e}")
     else:
         print("Chatbox is not running, starting now.")
-        if start_chatbox():  # Start the chatbox if it's not running
+        if start_chatbox():
             emit('bot_response', 'Chatbox is starting, please wait.')
         else:
             emit('bot_response', 'Failed to start the chatbox.')
 
 
-def check_inactivity():
-    global last_activity_time
-    while True:
-        if time.time() - last_activity_time > 1800:  # 30 minutes
-            print("Closing connection due to inactivity")
-            socketio.stop()  # Stop the SocketIO server
-            break
-        time.sleep(60)
-
-
 if __name__ == '__main__':
-    # Start the chatbox
     if start_chatbox():
         print("Chatbox is running.")
     else:
         print("Failed to start the chatbox process.")
 
-    # Send a dummy message "Hello" to the chatbot for testing
-    if chatbot_process and chatbot_process.poll() is None:
-        try:
-            print("Sending test message to chatbot: Hello")
-            chatbot_process.stdin.write(b"Hello\n")
-            chatbot_process.stdin.flush()
-            print("Test message sent successfully.")
-        except Exception as e:
-            print(f"Error sending test message to chatbot: {e}")
-    else:
-        print("Chatbox is not running.")
-
-    # Run the Flask app with gevent
     socketio.run(app, host='0.0.0.0', port=8765, debug=True)
